@@ -38,3 +38,26 @@ h1 em{color:#C2185B}
 @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
 @media (max-width:640px){.nav-links{display:none !important}.wrap{padding:0 20px}}
 
+
+/* Scroll-pinned essentials */
+.pin{height:420vh;position:relative}
+.pin-stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.pin-in{width:100%;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center}
+.pin-title{margin:0 0 16px;font-size:clamp(32px,4vw,54px);line-height:1.05;letter-spacing:-0.015em}
+.pin-count{font-size:15px;letter-spacing:0.18em;color:#6E5A63;margin-bottom:20px}
+.slides{position:relative;min-height:210px}
+.slide{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;transform:translateY(32px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.slide.active{opacity:1;transform:none;pointer-events:auto}
+.slide h3{margin:0 0 10px;font-size:clamp(48px,6vw,84px);font-weight:300;line-height:1}
+.slide p{margin:0 0 16px;font-size:19px;max-width:440px}
+.slink{font-weight:500;color:#120E10;border-bottom:1px solid #D9608F;padding-bottom:2px}
+.pin-nav{display:flex;gap:6px;margin-top:20px;flex-wrap:wrap}
+.pin-btn{min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;font-family:'Jost',sans-serif;font-size:16px;color:#6E5A63;cursor:pointer;border-bottom:2px solid transparent}
+.pin-btn.active{color:#120E10;border-bottom-color:#D9608F}
+.pin-bar{height:2px;background:#F0D3DD;margin-top:8px;max-width:440px}
+.pin-bar span{display:block;height:100%;width:0;background:#120E10}
+.pin-art{position:relative;display:flex;align-items:center;justify-content:center}
+.big-hex{height:min(460px,46vh);aspect-ratio:260/300;background:var(--c,#F4A9C4);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transform:rotate(calc(var(--p,0)*240deg));transition:background .6s}
+.art-label{position:absolute;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--fg,#120E10);transition:color .6s}
+@media (max-width:800px){.pin-in{grid-template-columns:1fr;gap:12px}.pin-art{order:-1}.big-hex{height:26vh}.slides{min-height:170px}.slide h3{font-size:44px}.pin-title{font-size:30px}}
+@media (prefers-reduced-motion:reduce){.pin{height:auto;padding:80px 0}.pin-stage{position:static;height:auto}.slides{min-height:0}.slide{position:static;opacity:1;transform:none;margin-bottom:28px}.pin-nav,.pin-count,.pin-bar,.pin-art{display:none}}
