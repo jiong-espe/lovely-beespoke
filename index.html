@@ -11,7 +11,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.add('js')</script>
 <script src="script.js" defer></script>
@@ -19,8 +19,13 @@
 <body>
 <div class="pg" style="min-height:100vh">
 
+<!-- HERO SCENE: pins, then blurs and fades behind a pink perfume puff as you scroll -->
+<section class="hero-scene" data-hero>
+<div class="hero-stage" data-hero-stage>
+<div class="hero-fx" data-hero-fx>
+
 <!-- NAV -->
-<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px">
+<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px;flex:none">
 <a href="#" style="display:flex;align-items:center;gap:10px;font-size:22px;font-weight:500;letter-spacing:0.01em">
 <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="#120E10" stroke-width="1.6" aria-hidden="true"><ellipse cx="20" cy="24" rx="9" ry="7" fill="#F4A9C4"/><path d="M15 20v8M20 17.5v13M25 20v8"/><circle cx="20" cy="14" r="3.5"/><path d="M15 17C9 7 12 5 16 9M25 17C31 7 28 5 24 9"/></svg>
 <span>Lovely&amp;Beespoke</span>
@@ -31,23 +36,30 @@
 </div>
 
 <!-- HERO -->
-<div id="top" class="wrap hero" style="padding-top:64px;padding-bottom:64px">
-<div style="display:flex;flex-direction:column;gap:28px">
-<div class="muted" style="font-size:14px;letter-spacing:0.18em;text-transform:uppercase">Makeup, made to measure</div>
-<h1 style="margin:0;font-size:clamp(54px,7.6vw,108px);font-weight:300;line-height:1.02;letter-spacing:-0.02em">The last makeup bag <em>you’ll ever need.</em></h1>
-<p class="muted" style="margin:0;font-size:20px;max-width:480px;font-weight:300">A small hive of considered essentials for lips, eyes, cheeks and skin. Each piece does more, so you carry less.</p>
-<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div id="top" class="wrap hero">
+<div class="hero-copy">
+<div class="muted eyebrow">Makeup, made to measure</div>
+<h1 class="hero-h1" data-hero-h1>The last makeup bag <em>you’ll ever need.</em></h1>
+<p class="muted hero-lede">A small hive of considered essentials for lips, eyes, cheeks and skin. Each piece does more, so you carry less.</p>
+<div class="hero-ctas">
 <a class="btn btn-d" href="#shop">Shop the collection</a>
 <a class="btn btn-l" href="#ritual">See the ritual</a>
 </div>
 </div>
-<div class="hero-art" style="position:relative;height:520px;max-width:520px;width:100%;margin:0 auto">
-<div class="hex" style="position:absolute;left:0;top:90px;width:260px;height:300px;background:#F4A9C4"></div>
-<div class="hex" style="position:absolute;left:170px;top:0;width:260px;height:300px;background:#120E10"></div>
-<div class="hex" style="position:absolute;left:170px;top:210px;width:260px;height:300px;background:#F9D3E1"></div>
-<div style="position:absolute;left:206px;top:136px;width:188px;text-align:center;color:#FFF6F8;font-size:14px;letter-spacing:0.12em;text-transform:uppercase">[Hero product photo]</div>
+<div class="hero-art">
+<div class="hex hx-a"></div>
+<div class="hex hx-b"></div>
+<div class="hex hx-c"></div>
+<div class="hero-label" data-nozzle>[Hero product photo]</div>
 </div>
 </div>
+
+</div>
+<div class="scroll-cue" data-cue aria-hidden="true"><span>Scroll to spritz</span><i></i></div>
+</div>
+<div class="hero-runway" aria-hidden="true"></div>
+</section>
+<canvas class="smoke" data-smoke aria-hidden="true"></canvas>
 
 <!-- USE IT AS -->
 <div style="border-top:1px solid #F0D3DD;border-bottom:1px solid #F0D3DD;padding:28px 0;overflow-x:auto">
@@ -56,6 +68,41 @@
 <span class="pill">a lip tint</span><span class="pill">a cheek flush</span><span class="pill">a lid wash</span><span class="pill">a brow set</span><span class="pill">a highlighter</span><span class="pill">a skin veil</span>
 </div>
 </div>
+
+<!-- ONE SHADE: outlined type fills with colour while the shade card scrolls along -->
+<section class="fill-scene" data-fill>
+<div class="fill-stage">
+<h2 class="fill-text"><span class="sr-only">One shade. Six ways to wear it.</span>
+<span class="fill-layer fill-outline" aria-hidden="true"><span>One shade.</span><span>Six ways</span><span>to wear it.</span></span>
+<span class="fill-layer fill-solid" aria-hidden="true" data-fill-solid><span>One shade.</span><span>Six ways</span><span>to wear it.</span></span>
+</h2>
+<div class="card-slot">
+<div class="shade-card" data-card>
+<div class="sc-screen" data-card-screen>
+<div class="sc-list" data-card-list>
+<div class="sc-head"><span class="sc-eyebrow">Shade card</span><span class="sc-name">Honey</span><span class="sc-sub">One pot, six places</span><div class="sc-swatch"></div></div>
+<div class="sc-group">Lips</div>
+<div class="sc-row"><i style="--s:#D9608F"></i><span>Lip tint</span><s style="--w:45%"></s><b>Sheer</b></div>
+<div class="sc-row"><i style="--s:#C2185B"></i><span>Blotted stain</span><s style="--w:70%"></s><b>Deep</b></div>
+<div class="sc-group">Cheeks</div>
+<div class="sc-row"><i style="--s:#F4A9C4"></i><span>Cheek flush</span><s style="--w:55%"></s><b>Buildable</b></div>
+<div class="sc-row"><i style="--s:#F9D3E1"></i><span>Highlighter</span><s style="--w:30%"></s><b>Glow</b></div>
+<div class="sc-group">Eyes</div>
+<div class="sc-row"><i style="--s:#D9608F"></i><span>Lid wash</span><s style="--w:40%"></s><b>Soft</b></div>
+<div class="sc-row"><i style="--s:#6E5A63"></i><span>Brow set</span><s style="--w:60%"></s><b>Defined</b></div>
+<div class="sc-group">Skin</div>
+<div class="sc-row"><i style="--s:#FBE6EE"></i><span>Skin veil</span><s style="--w:25%"></s><b>Light</b></div>
+<div class="sc-group">Pairs with</div>
+<div class="sc-row"><i style="--s:#E8B4A0"></i><span>Petal</span><s style="--w:50%"></s><b>Lips</b></div>
+<div class="sc-row"><i style="--s:#A68A7B"></i><span>Taupe</span><s style="--w:65%"></s><b>Eyes</b></div>
+<div class="sc-row"><i style="--s:#C9577E"></i><span>Rose</span><s style="--w:55%"></s><b>Cheeks</b></div>
+<div class="sc-row"><i style="--s:#120E10"></i><span>Ink</span><s style="--w:80%"></s><b>Lashes</b></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
 <!-- PILLARS (scroll-pinned) -->
 <section id="shop" class="pin" data-pin>
@@ -112,11 +159,12 @@
 </div>
 
 <!-- CTA -->
-<div id="join" style="background:#F4A9C4;padding:112px 0">
-<div class="wrap" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
-<h2 style="margin:0;font-size:clamp(46px,6.4vw,84px);font-weight:300;letter-spacing:-0.015em">See yourself <em>softly.</em></h2>
-<p style="margin:0;font-size:20px;font-weight:300;max-width:480px">Join the hive for first access to new shades and the occasional bit of honey.</p>
-<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;width:100%;max-width:520px">
+<div id="join" class="join" data-join>
+<canvas class="join-mist" data-mist aria-hidden="true"></canvas>
+<div class="wrap join-in">
+<h2 class="join-h"><span class="sr-only">See yourself softly.</span><span aria-hidden="true" data-wave>See yourself <em>softly.</em></span></h2>
+<p class="join-p" data-type>Join the hive for first access to new shades and the occasional bit of honey.</p>
+<div class="join-form">
 <label for="em" style="position:absolute;left:-9999px">Email address</label>
 <input id="em" type="email" placeholder="Your email" style="flex:1;min-width:200px;min-height:48px;border:1px solid #120E10;border-radius:999px;padding:0 22px;font-family:'Jost',sans-serif;font-size:16px;background:#FFF6F8;box-sizing:border-box">
 <button class="btn btn-d" type="button">Join the hive</button>
