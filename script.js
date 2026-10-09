@@ -105,8 +105,8 @@
     ctx.drawImage(img, -r, -r, r * 2, r * 2);
   }
 
-  var LIGHT = ['244,169,196', '249,211,225', '255,214,229', '251,230,238'];
-  var DEEP = ['217,96,143', '236,140,180', '244,169,196'];
+  var LIGHT = ['242,196,206', '248,225,230', '216,200,236', '239,234,247'];
+  var DEEP = ['211,143,165', '184,160,216', '242,196,206'];
 
   // ---------- Hero: pin, blur + fade, perfume puff ----------
   (function () {
@@ -156,7 +156,7 @@
 
       // Mist veil over the whole screen while the cloud hangs in the air.
       var haze = 0.4 * smooth(0.15, 0.7, p) * fade;
-      if (haze > 0.003) { ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(251,230,238,' + haze.toFixed(3) + ')'; ctx.fillRect(0, 0, cv.width, cv.height); }
+      if (haze > 0.003) { ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(248,240,246,' + haze.toFixed(3) + ')'; ctx.fillRect(0, 0, cv.width, cv.height); }
 
       var dx = target.x - origin.x, dy = target.y - origin.y, len = Math.hypot(dx, dy) || 1;
       dx /= len; dy /= len;
@@ -183,7 +183,7 @@
 
       // A fine glittering mist right at the nozzle in the first instant of the spray.
       ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.fillStyle = '#D9608F';
+      ctx.fillStyle = '#D38FA5';
       for (i = 0; i < drops.length; i++) {
         var d = drops[i], da = p - d.t0;
         if (da <= 0 || da > 0.22) continue;
@@ -292,7 +292,7 @@
     }
 
     var cv = join.querySelector('[data-mist]'), ctx = cv.getContext('2d');
-    var r = rng(11), sprites = makeSprites(['244,169,196', '217,96,143', '249,211,225', '236,140,180'], 5, r), clouds = [];
+    var r = rng(11), sprites = makeSprites(['242,196,206', '200,184,224', '248,225,230', '184,160,216'], 5, r), clouds = [];
     for (var i = 0; i < 34; i++) {
       clouds.push({ side: i % 2 ? 1 : -1, x: r() * 0.26 - 0.06, y: r(), size: 0.5 + r() * 0.6, alpha: 0.3 + r() * 0.3,
         rot: r() * 6.28, spin: (r() - 0.5) * 0.4, w: 0.5 + r(), ph: r() * 6.28, img: sprites[(r() * sprites.length) | 0] });
