@@ -51,7 +51,7 @@
 <svg class="folk-bee" viewBox="0 0 430 510" fill="none" stroke="#2B2629" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 <defs><clipPath id="bee-abd"><path d="M215 228C252 228 260 282 248 320C240 344 224 354 215 364C206 354 190 344 182 320C170 282 178 228 215 228Z"/></clipPath></defs>
 <circle cx="215" cy="255" r="200" fill="#F3EEF8" stroke="none"/>
-<circle cx="215" cy="255" r="186" stroke="#DCCFE3" stroke-width="1.5" stroke-dasharray="2 7"/>
+<circle class="ring" cx="215" cy="255" r="186" stroke="#DCCFE3" stroke-width="1.5" stroke-dasharray="2 7"/>
 <g id="bee-half">
 <path d="M262 120C300 92 336 78 372 74"/>
 <path d="M290 102c2-14 12-22 22-22c-2 12-10 20-22 22ZM318 88c4-14 14-20 24-18c-4 12-12 18-24 18ZM346 78c6-12 16-16 26-12c-6 10-14 14-26 12ZM296 98c12 6 16 16 14 26c-10-4-14-14-14-26ZM326 86c12 4 18 14 16 24c-10-2-16-12-16-24Z" fill="#9DB5A0"/>
@@ -83,7 +83,6 @@
 <circle cx="215" cy="172" r="2" fill="#F2C14E" stroke="none"/>
 <path d="M215 470c-10-10-22-14-22-24c0-8 10-12 22-2c12-10 22-6 22 2c0 10-12 14-22 24Z" fill="#D38FA5"/>
 </svg>
-<span class="nozzle" data-nozzle></span>
 </div>
 </div>
 
@@ -119,7 +118,7 @@
 <defs><pattern id="apron-zig" width="12" height="10" patternUnits="userSpaceOnUse"><path d="M6 0l4 5l-4 5" stroke="#9E5C79" stroke-width="1.4"/></pattern></defs>
 <path d="M30 452C130 444 270 444 370 452"/>
 <!-- plant sits behind the figures so the joined hands cover the stem; script.js grows each [data-y] part as the stem tip passes it -->
-<g>
+<g class="plant">
 <path data-y="452" data-span=".8" data-draw pathLength="1" stroke-dasharray="1 2" d="M200 452C196 380 204 320 200 250C197 180 203 110 200 46" stroke-width="2.4"/>
 <path data-y="176" data-span=".12" data-draw pathLength="1" stroke-dasharray="1 2" d="M200 176C198 140 176 112 160 80"/>
 <path data-y="176" data-span=".12" data-draw pathLength="1" stroke-dasharray="1 2" d="M200 176C202 140 224 112 240 80"/>
@@ -143,7 +142,7 @@
 <g transform="translate(240 80) rotate(20)"><path class="bl" data-y="104" d="M-14 0C-16-18-10-26-8-28L-3-18L0-30L3-18L8-28C10-26 16-18 14 0C8 6-8 6-14 0Z" fill="#D38FA5"/></g>
 <g transform="translate(200 48) scale(1.2)"><path class="bl" data-y="50" d="M-14 0C-16-18-10-26-8-28L-3-18L0-30L3-18L8-28C10-26 16-18 14 0C8 6-8 6-14 0Z" fill="#9E5C79"/></g>
 </g>
-<!-- her -->
+<g class="her">
 <path d="M84 152L84 118C84 90 136 90 136 118L136 152Z" fill="#F7E4A6"/>
 <ellipse cx="110" cy="124" rx="18" ry="21" fill="#F8E1E6"/>
 <path d="M92 112C100 100 120 100 128 112L128 106C122 96 98 96 92 106Z" fill="#F7E4A6"/>
@@ -161,7 +160,9 @@
 <rect x="82" y="206" width="56" height="9" rx="2" fill="#9DB5A0"/>
 <path d="M62 422L158 422" stroke="#FCF9F8" stroke-width="3" stroke-dasharray="1 6"/>
 <ellipse cx="92" cy="438" rx="12" ry="5" fill="#2B2629"/><ellipse cx="128" cy="438" rx="12" ry="5" fill="#2B2629"/>
-<!-- him -->
+<circle cx="194" cy="294" r="8" fill="#F8E1E6"/>
+</g>
+<g class="him">
 <path d="M268 112L268 142L312 142L312 112Z" fill="#F7E4A6"/>
 <ellipse cx="290" cy="128" rx="18" ry="21" fill="#F8E1E6"/>
 <path d="M268 64L312 64L316 108L264 108Z" fill="#2B2629"/>
@@ -180,8 +181,8 @@
 <path d="M286 160L290 168L294 160Z" fill="#2B2629"/>
 <g fill="#2B2629" stroke="none"><circle cx="290" cy="180" r="2"/><circle cx="290" cy="198" r="2"/><circle cx="290" cy="216" r="2"/><circle cx="290" cy="234" r="2"/></g>
 <rect x="279" y="252" width="22" height="12" fill="#D38FA5"/>
-<!-- joined hands over the stem -->
-<circle cx="194" cy="294" r="8" fill="#F8E1E6"/><circle cx="206" cy="296" r="8" fill="#F8E1E6"/>
+<circle cx="206" cy="296" r="8" fill="#F8E1E6"/>
+</g>
 </svg>
 </div>
 <div class="svc-col">
@@ -192,44 +193,39 @@
 </div>
 </section>
 
-<!-- YOURS: outlined type fills with colour while a custom-order card scrolls along -->
-<section class="fill-scene" data-fill>
-<div class="fill-stage">
-<h2 class="fill-text"><span class="sr-only">Your name. Your colors. Your day.</span>
-<span class="fill-layer fill-outline" aria-hidden="true"><span>Your name.</span><span>Your colors.</span><span>Your day.</span></span>
-<span class="fill-layer fill-solid" aria-hidden="true" data-fill-solid><span>Your name.</span><span>Your colors.</span><span>Your day.</span></span>
-</h2>
-<div class="card-slot">
-<div class="shade-card" data-card>
-<div class="sc-screen" data-card-screen>
-<div class="sc-list" data-card-list>
-<div class="sc-head"><span class="sc-eyebrow">Custom order</span><span class="sc-name">Mia’s 7th</span><span class="sc-sub">A little bee birthday</span><div class="sc-swatch"></div></div>
-<div class="sc-group">Your details</div>
-<div class="sc-row"><i style="--s:#F2C4CE"></i><span>Name</span><b>Mia</b></div>
-<div class="sc-row"><i style="--s:#C8B8E0"></i><span>Colors</span><b>Blush + lilac</b></div>
-<div class="sc-row"><i style="--s:#F2C14E"></i><span>Theme</span><b>Little bee</b></div>
-<div class="sc-group">In the box</div>
-<div class="sc-row"><i style="--s:#F2C4CE"></i><span>Favor bags</span><b>24</b></div>
-<div class="sc-row"><i style="--s:#C8B8E0"></i><span>Name tags</span><b>24</b></div>
-<div class="sc-row"><i style="--s:#F8E1E6"></i><span>Thank-you cards</span><b>24</b></div>
-<div class="sc-row"><i style="--s:#F2C14E"></i><span>Cake topper</span><b>1</b></div>
-<div class="sc-group">Finishing touches</div>
-<div class="sc-row"><i style="--s:#D38FA5"></i><span>Gift wrap</span><b>Lilac ribbon</b></div>
-<div class="sc-row"><i style="--s:#C8B8E0"></i><span>Handwritten note</span><b>Yes</b></div>
-<div class="sc-row"><i style="--s:#F2C14E"></i><span>Bee charm</span><b>On each bag</b></div>
-<div class="sc-group">Status</div>
-<div class="sc-row"><i style="--s:#7E6AA8"></i><span>Sketched</span><b>Done</b></div>
-<div class="sc-row"><i style="--s:#D38FA5"></i><span>Crafting</span><b>In progress</b></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
 <!-- PILLARS (scroll-pinned) -->
 <section id="shop" class="pin" data-pin>
 <div class="pin-stage">
+<div class="pin-art" aria-hidden="true"><div class="scene" data-hex>
+<!-- Full-bleed folk landscape: scroll blows the gusts along their paths, drifts the petals and sways the trees (script.js sets --p, --w); slice keeps the sun side in frame on narrow screens -->
+<svg viewBox="0 0 800 500" preserveAspectRatio="xMaxYMax slice" fill="none" stroke="#2B2629" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="-400" width="1200" height="500" fill="#DCCFE3" stroke="none"/>
+<circle class="sun" cx="620" cy="150" r="72" stroke="none"/>
+<circle class="ring" cx="620" cy="150" r="86" stroke-dasharray="2 7"/>
+<text class="art-label" data-label x="620" y="146" text-anchor="middle" stroke="none">[PRODUCT<tspan x="620" dy="18">PHOTO]</tspan></text>
+<g class="gusts" stroke="#FCF9F8" stroke-width="8">
+<path data-gust="1" pathLength="1" stroke-dasharray=".5 .5" d="M-20 90C80 60 180 120 280 96C340 80 356 44 324 36C300 30 290 58 310 64"/>
+<path data-gust="1.4" pathLength="1" stroke-dasharray=".5 .5" d="M120 230C240 200 340 250 450 214C510 194 512 152 482 148C458 146 456 172 474 178"/>
+<path data-gust=".8" pathLength="1" stroke-dasharray=".5 .5" d="M420 300C520 280 640 310 820 270"/>
+<path data-gust="1.2" pathLength="1" stroke-dasharray=".5 .5" d="M-20 180C60 168 120 190 200 176"/>
+</g>
+<path d="M-410 330C-200 280 -60 240 110 270C210 230 280 240 380 290C470 340 620 250 810 290V510H-410Z" fill="#F2C4CE" stroke="none"/>
+<path d="M60 300C150 250 250 246 360 300M90 324C180 284 270 284 380 326M600 290C680 270 740 268 800 280" stroke="#FCF9F8"/>
+<path d="M-410 400C-200 360 0 330 170 340C300 330 380 350 470 370C600 400 700 340 810 350V510H-410Z" fill="#9DB5A0" stroke="none"/>
+<path d="M40 380C200 330 340 344 460 378M80 404C220 370 340 376 470 398" stroke="#FCF9F8"/>
+<path d="M538 348H586V382H538Z" fill="#FCF9F8"/>
+<path d="M532 350L562 322L592 350Z" fill="#9E5C79"/>
+<rect x="546" y="358" width="10" height="10" fill="#F2C14E"/>
+<rect x="566" y="362" width="10" height="20" fill="#7E6AA8"/>
+<g class="tree"><path d="M470 376V344"/><path d="M470 350C454 338 454 306 470 288C486 306 486 338 470 350Z" fill="#7E6AA8"/><path d="M470 344V300M470 318l-7-7M470 318l7-7M470 332l-8-7M470 332l8-7" stroke="#FCF9F8"/></g>
+<g class="tree"><path d="M690 366V334"/><path d="M690 340C676 330 676 302 690 286C704 302 704 330 690 340Z" fill="#7E6AA8"/><path d="M690 334V298M690 314l-6-6M690 314l6-6" stroke="#FCF9F8"/></g>
+<g class="tree"><path d="M744 360V338"/><path d="M744 342C734 334 734 314 744 302C754 314 754 334 744 342Z" fill="#7E6AA8"/><path d="M744 336V310" stroke="#FCF9F8"/></g>
+<path d="M-410 450C-100 420 200 410 400 424C560 420 680 414 810 410V510H-410Z" fill="#F8E1E6" stroke="none"/>
+<path d="M20 470C220 440 480 460 780 448" stroke="#D38FA5" stroke-dasharray="4 6"/>
+<g class="drift" fill="#FCF9F8" stroke="none"><circle cx="-300" cy="60" r="3.5"/><circle cx="-240" cy="140" r="3"/><circle cx="-180" cy="40" r="3"/><circle cx="-120" cy="220" r="3.5"/><circle cx="-60" cy="110" r="3"/><circle cx="0" cy="170" r="3.5"/><circle cx="60" cy="70" r="3"/><circle cx="120" cy="260" r="3.5"/><circle cx="-200" cy="300" r="3"/><circle cx="-80" cy="320" r="3"/><circle cx="200" cy="120" r="3.5"/><circle cx="300" cy="280" r="3"/><circle cx="380" cy="60" r="3.5"/><circle cx="460" cy="200" r="3"/></g>
+<g class="drift drift-2" fill="#D38FA5" stroke="none"><circle cx="-340" cy="180" r="2.5"/><circle cx="-260" cy="90" r="2.5"/><circle cx="-150" cy="250" r="2.5"/><circle cx="-50" cy="40" r="2.5"/><circle cx="40" cy="130" r="2.5"/><circle cx="140" cy="50" r="2.5"/><circle cx="240" cy="180" r="2.5"/><circle cx="340" cy="240" r="2.5"/></g>
+</svg>
+</div></div>
 <div class="wrap pin-in">
 <div class="pin-copy">
 <h2 class="pin-title">Four little ways. <em>One big celebration.</em></h2>
@@ -243,37 +239,6 @@
 <div class="pin-nav"><button class="pin-btn active" type="button">C</button><button class="pin-btn" type="button">F</button><button class="pin-btn" type="button">G</button><button class="pin-btn" type="button">P</button></div>
 <div class="pin-bar"><span data-bar></span></div>
 </div>
-<div class="pin-art" aria-hidden="true"><div class="scene" data-hex>
-<!-- Folk landscape: scroll blows the gusts along their paths, drifts the petals and sways the trees (script.js sets --p, --w) -->
-<svg viewBox="0 0 500 400" fill="none" stroke="#2B2629" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<defs><clipPath id="scene-clip"><rect width="500" height="400" rx="18"/></clipPath></defs>
-<g clip-path="url(#scene-clip)">
-<rect width="500" height="400" fill="#DCCFE3" stroke="none"/>
-<circle class="sun" cx="370" cy="110" r="60" stroke="none"/>
-<circle cx="370" cy="110" r="72" stroke-dasharray="2 7"/>
-<g stroke="#FCF9F8" stroke-width="7">
-<path data-gust="1" pathLength="1" stroke-dasharray=".5 .5" d="M-20 70C40 50 110 90 170 72C214 58 226 28 202 22C184 18 176 40 192 46"/>
-<path data-gust="1.4" pathLength="1" stroke-dasharray=".5 .5" d="M20 180C100 160 170 196 240 170C280 155 282 126 260 122C242 120 240 140 254 144"/>
-<path data-gust=".8" pathLength="1" stroke-dasharray=".5 .5" d="M300 230C360 214 430 236 520 212"/>
-</g>
-<path d="M-10 250C70 180 150 160 230 220C290 262 390 190 510 222V410H-10Z" fill="#F2C4CE" stroke="none"/>
-<path d="M20 252C80 206 150 196 220 240M40 272C100 236 170 230 240 262M330 236C380 214 440 210 500 226" stroke="#FCF9F8"/>
-<path d="M-10 310C110 250 220 268 300 296C380 324 440 276 510 286V410H-10Z" fill="#9DB5A0" stroke="none"/>
-<path d="M30 320C120 280 210 290 290 316M60 340C140 310 220 318 300 336" stroke="#FCF9F8"/>
-<path d="M312 276H356V308H312Z" fill="#FCF9F8"/>
-<path d="M306 278L334 252L362 278Z" fill="#9E5C79"/>
-<rect x="320" y="286" width="10" height="10" fill="#F2C14E"/>
-<rect x="338" y="290" width="10" height="18" fill="#7E6AA8"/>
-<g class="tree"><path d="M250 316V286"/><path d="M250 290C236 280 236 252 250 236C264 252 264 280 250 290Z" fill="#7E6AA8"/><path d="M250 284V246M250 262l-6-6M250 262l6-6M250 274l-7-6M250 274l7-6" stroke="#FCF9F8"/></g>
-<g class="tree"><path d="M412 304V280"/><path d="M412 284C400 276 400 252 412 238C424 252 424 276 412 284Z" fill="#7E6AA8"/><path d="M412 278V248M412 262l-5-5M412 262l5-5" stroke="#FCF9F8"/></g>
-<path d="M-10 350C140 320 320 344 510 330V410H-10Z" fill="#F8E1E6" stroke="none"/>
-<path d="M20 370C160 346 320 364 480 352" stroke="#D38FA5" stroke-dasharray="4 6"/>
-<g class="drift" fill="#FCF9F8" stroke="none"><circle cx="-180" cy="60" r="3"/><circle cx="-140" cy="120" r="3"/><circle cx="-100" cy="40" r="2.5"/><circle cx="-60" cy="180" r="3"/><circle cx="-20" cy="90" r="2.5"/><circle cx="20" cy="140" r="3"/><circle cx="60" cy="60" r="2.5"/><circle cx="100" cy="200" r="3"/><circle cx="-120" cy="230" r="3"/><circle cx="-40" cy="250" r="2.5"/><circle cx="140" cy="100" r="3"/><circle cx="200" cy="240" r="2.5"/><circle cx="260" cy="60" r="3"/></g>
-<g class="drift drift-2" fill="#D38FA5" stroke="none"><circle cx="-220" cy="150" r="2"/><circle cx="-160" cy="80" r="2"/><circle cx="-90" cy="210" r="2"/><circle cx="-30" cy="30" r="2"/><circle cx="40" cy="110" r="2"/><circle cx="110" cy="40" r="2"/><circle cx="180" cy="150" r="2"/></g>
-</g>
-</svg>
-<div class="art-label" data-label>[Product photo]</div>
-</div></div>
 </div>
 </div>
 </section>
@@ -323,7 +288,7 @@
 <path pathLength="1" d="M150 116c-2 8-4 12-1 14h4"/>
 <path class="fl" d="M143 140c4-3 10-3 14 0c-4 5-10 5-14 0Z" fill="#D38FA5"/>
 <g class="fl" fill="#F2C4CE" stroke="none"><circle cx="128" cy="130" r="6"/><circle cx="172" cy="130" r="6"/></g>
-<g class="fl" fill="#2B2629"><path d="M116 118c-6 10-6 22 0 30c6-8 6-20 0-30Z"/><path d="M184 118c-6 10-6 22 0 30c6-8 6-20 0-30Z"/></g>
+<g class="fl" fill="#2B2629"><path class="ear" d="M116 118c-6 10-6 22 0 30c6-8 6-20 0-30Z"/><path class="ear" d="M184 118c-6 10-6 22 0 30c6-8 6-20 0-30Z"/></g>
 <path pathLength="1" d="M140 158V178M160 158V178"/>
 <path pathLength="1" d="M140 178C118 182 104 194 100 214C92 280 52 350 36 420H264C248 350 208 280 200 214C196 194 182 182 160 178"/>
 <path pathLength="1" d="M122 186C134 206 166 206 178 186"/>
@@ -338,9 +303,11 @@
 <path pathLength="1" d="M36 420c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0"/>
 <g class="fl">
 <path d="M200 300c30-10 50-30 40-50c-6-12-22-6-16 6" stroke-dasharray="2 5"/>
+<g class="bea-bee">
 <path d="M240 214c-8-12-2-20 6-16M248 212c2-14 12-16 16-8" fill="#FCF9F8"/>
 <ellipse cx="250" cy="222" rx="10" ry="7" fill="#F2C14E" transform="rotate(-20 250 222)"/>
 <path d="M248 216l-3 12M254 214l-3 12"/>
+</g>
 <text x="226" y="164" font-family="Callem, 'Cormorant Garamond', serif" font-size="30" fill="#9E5C79" stroke="none">Bea</text>
 </g>
 </svg>

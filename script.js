@@ -56,7 +56,7 @@
   update();
 })();
 
-// Immersive layer: perfume-puff hero, liquid-fill type, misted CTA. Everything is scroll-scrubbed,
+// Immersive layer: perfume-puff hero, growing plant, misted CTA. Everything is scroll-scrubbed,
 // so scrolling back up rewinds it; canvases render at half resolution because smoke is soft anyway.
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -72,7 +72,6 @@
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     };
   }
-  function gauss(r) { return (r() + r() + r() - 1.5) / 1.5; }
 
   // Soft, lumpy cloud sprites built from overlapping radial gradients.
   function makeSprites(colors, count, r) {
@@ -118,8 +117,7 @@
     var cv = document.querySelector('[data-smoke]');
     if (!scene || !cv || reduce) return;
     var stage = scene.querySelector('[data-hero-stage]'), fx = scene.querySelector('[data-hero-fx]');
-    var cue = scene.querySelector('[data-cue]'), nozzle = scene.querySelector('[data-nozzle]');
-    var h1 = scene.querySelector('[data-hero-h1]'), ctx = cv.getContext('2d');
+    var cue = scene.querySelector('[data-cue]'), ctx = cv.getContext('2d');
     var r = rng(7), light = makeSprites(LIGHT, 5, r), deep = makeSprites(DEEP, 3, r);
     // Static grain knocked out of the smoke's alpha: dithers gradient banding and reads as fine mist.
     var gc = document.createElement('canvas'); gc.width = gc.height = 128;
@@ -127,20 +125,20 @@
     for (var k = 3; k < gd.data.length; k += 4) gd.data[k] = r() * 22;
     gx.putImageData(gd, 0, 0);
     var grain = ctx.createPattern(gc, 'repeat');
-    var W = 0, H = 0, origin = null, target = null, running = false;
+    var W = 0, H = 0, running = false;
 
     var N = window.innerWidth < 700 ? 80 : 120, puffs = [], drops = [];
     for (var i = 0; i < N; i++) {
       var u = i / N;
       puffs.push({
         t0: 0.02 + 0.3 * Math.pow(u, 1.5), // burst: most of the spray leaves early
-        ang: gauss(r) * 0.42, dist: 0.3 + r() * 0.9, rise: r(), size: 0.55 + r() * 0.75,
+        ang: r() * 6.283, dist: 0.25 + r() * 0.8, rise: r(), size: 0.55 + r() * 0.75,
         alpha: 0.2 + r() * 0.22, rot: r() * 6.28, spin: (r() - 0.5) * 1.2,
         w: 0.6 + r() * 0.8, ph1: r() * 6.28, ph2: r() * 6.28,
         img: u < 0.3 && r() < 0.6 ? deep[(r() * deep.length) | 0] : light[(r() * light.length) | 0]
       });
     }
-    for (i = 0; i < 46; i++) drops.push({ t0: 0.015 + r() * 0.16, ang: gauss(r) * 0.3, dist: 0.25 + r() * 0.6, s: 0.6 + r() * 1.6 });
+    for (i = 0; i < 46; i++) drops.push({ t0: 0.015 + r() * 0.16, ang: r() * 6.283, dist: 0.25 + r() * 0.6, s: 0.6 + r() * 1.6 });
 
     function layout() {
       W = window.innerWidth; H = window.innerHeight;
@@ -150,32 +148,29 @@
     function progress() {
       return -scene.getBoundingClientRect().top / Math.max(1, scene.offsetHeight - H);
     }
-    function center(el) { var b = el.getBoundingClientRect(); return { x: b.left + b.width / 2, y: b.top + b.height / 2 }; }
 
     function draw(p, t) {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, cv.width, cv.height);
       var fade = 1 - smooth(0.85, 1.6, p);
-      if (p <= 0 || fade <= 0 || !origin) return;
+      if (p <= 0 || fade <= 0) return;
 
       // Mist veil over the whole screen while the cloud hangs in the air.
       var haze = 0.4 * smooth(0.15, 0.7, p) * fade;
       if (haze > 0.003) { ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(248,240,246,' + haze.toFixed(3) + ')'; ctx.fillRect(0, 0, cv.width, cv.height); }
 
-      var dx = target.x - origin.x, dy = target.y - origin.y, len = Math.hypot(dx, dy) || 1;
-      dx /= len; dy /= len;
-      var minD = Math.min(W, H), L = clamp(len * 1.35, minD * 0.6, Math.max(W, H) * 0.95), R0 = minD * 0.24;
+      // Puff blooms outward from the centre of the screen in every direction.
+      var cx = W / 2, cy = H / 2, minD = Math.min(W, H), L = Math.hypot(W, H) * 0.42, R0 = minD * 0.24;
 
       for (var i = 0; i < puffs.length; i++) {
         var q = puffs[i], age = p - q.t0;
         if (age <= 0) continue;
         var e = 1 - Math.exp(-age * 6);
         var along = q.dist * L * (e + age * 0.08); // fast jet, then a slow drift
-        var c = Math.cos(q.ang * (0.5 + e)), s = Math.sin(q.ang * (0.5 + e)); // cone opens as it travels
-        var vx = dx * c - dy * s, vy = dx * s + dy * c;
+        var vx = Math.cos(q.ang + q.spin * 0.4 * e), vy = Math.sin(q.ang + q.spin * 0.4 * e); // slight swirl as it spreads
         var rad = R0 * q.size * (0.1 + 1.5 * (1 - Math.exp(-age * 3.5)));
-        var x = origin.x + vx * along + Math.sin(t * 0.00035 * q.w + q.ph1) * rad * 0.18 * e;
-        var y = origin.y + vy * along - q.rise * H * 0.14 * age + Math.cos(t * 0.0003 * q.w + q.ph2) * rad * 0.14 * e;
+        var x = cx + vx * along + Math.sin(t * 0.00035 * q.w + q.ph1) * rad * 0.18 * e;
+        var y = cy + vy * along - q.rise * H * 0.14 * age + Math.cos(t * 0.0003 * q.w + q.ph2) * rad * 0.14 * e;
         var a = q.alpha * smooth(0, 0.03, age) * fade / (1 + age * 0.9);
         drawSprite(ctx, q.img, x, y, rad, q.rot + age * q.spin + t * 0.00004 * q.spin, a);
       }
@@ -185,14 +180,14 @@
       ctx.fillStyle = grain; ctx.fillRect(0, 0, cv.width, cv.height);
       ctx.globalCompositeOperation = 'source-over';
 
-      // A fine glittering mist right at the nozzle in the first instant of the spray.
+      // A fine glittering mist right at the centre in the first instant of the spray.
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.fillStyle = '#D38FA5';
       for (i = 0; i < drops.length; i++) {
         var d = drops[i], da = p - d.t0;
         if (da <= 0 || da > 0.22) continue;
-        var de = 1 - Math.exp(-da * 14), dc = Math.cos(d.ang), ds = Math.sin(d.ang);
-        var px = origin.x + (dx * dc - dy * ds) * d.dist * L * de, py = origin.y + (dx * ds + dy * dc) * d.dist * L * de;
+        var de = 1 - Math.exp(-da * 14);
+        var px = cx + Math.cos(d.ang) * d.dist * L * de, py = cy + Math.sin(d.ang) * d.dist * L * de;
         ctx.globalAlpha = 0.7 * (1 - da / 0.22);
         ctx.beginPath(); ctx.arc(px * RES, py * RES, d.s * RES, 0, 6.283); ctx.fill();
       }
@@ -202,7 +197,6 @@
     function frame(t) {
       running = false;
       var p = progress();
-      if (p <= 1) { origin = center(nozzle); target = center(h1); } // freeze once unpinned so the cloud hangs in place
 
       var blur = 16 * smooth(0.04, 0.7, p), op = 1 - smooth(0.3, 0.92, p), sc = 1 + 0.07 * smooth(0, 1, p);
       fx.style.filter = blur > 0.05 ? 'blur(' + blur.toFixed(2) + 'px)' : '';
@@ -241,46 +235,6 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     update();
-  })();
-
-  // ---------- One shade: liquid fill + shade card scrolling along ----------
-  (function () {
-    var sec = document.querySelector('[data-fill]');
-    if (!sec || reduce) return;
-    var solid = sec.querySelector('[data-fill-solid]'), card = sec.querySelector('[data-card]');
-    var screen = sec.querySelector('[data-card-screen]'), list = sec.querySelector('[data-card-list]');
-    var visible = false, running = false;
-
-    function frame(t) {
-      running = false;
-      var b = sec.getBoundingClientRect(), H = window.innerHeight;
-      var p = clamp(-b.top / Math.max(1, sec.offsetHeight - H), 0, 1);
-
-      // Wave edge, tilted so the right side fills first; level 0 = empty, 1 = full.
-      var level = smooth(0.06, 0.82, p), A = 3.2, T = 14;
-      var base = (100 + A + T / 2) + level * (-2 * A - T - 100);
-      var pts = [];
-      for (var i = 0; i <= 24; i++) {
-        var x = i / 24;
-        var y = base - T * (x - 0.5) + A * Math.sin(x * 9 + t * 0.0016) + A * 0.5 * Math.sin(x * 17 - t * 0.0011);
-        pts.push((x * 110 - 5).toFixed(1) + '% ' + y.toFixed(2) + '%');
-      }
-      solid.style.clipPath = 'polygon(' + pts.join(',') + ',105% 130%,-5% 130%)';
-
-      var enter = 1 - smooth(0, 0.3, p);
-      card.style.transform = 'translateY(' + (enter * H * 0.85 - smooth(0.3, 1, p) * H * 0.05).toFixed(1) + 'px) rotate(' + (enter * -6).toFixed(2) + 'deg)';
-      var travel = Math.max(0, list.offsetHeight - screen.clientHeight);
-      list.style.transform = 'translateY(' + (-smooth(0.28, 0.95, p) * travel).toFixed(1) + 'px)';
-
-      if (visible && !document.hidden) { running = true; requestAnimationFrame(frame); }
-    }
-    function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) { visible = en[en.length - 1].isIntersecting; if (visible) kick(); }).observe(sec);
-    } else { visible = true; }
-    window.addEventListener('scroll', kick, { passive: true });
-    document.addEventListener('visibilitychange', kick);
-    kick();
   })();
 
   // ---------- CTA: headline wave, letter drop-in, parting mist ----------
