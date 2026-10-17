@@ -1,6 +1,6 @@
 // Scroll-reveal: elements fade and rise as they enter the viewport.
 (function () {
-  var sel = '.pill, #ritual .hero > div:first-child, #ritual .hero > div:last-child > div, #bea > div, #join .join-h, #join .join-form, #foot';
+  var sel = '.pill, #ritual .hero > div:first-child, #ritual .hive-stack > *, #bea > div, #join .join-h, #join .join-form, #foot';
   var els = document.querySelectorAll(sel);
   if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
   var io = new IntersectionObserver(function (entries) {
@@ -23,6 +23,7 @@
   var slides = pin.querySelectorAll('.slide'), btns = pin.querySelectorAll('.pin-btn');
   var hex = pin.querySelector('[data-hex]'), label = pin.querySelector('[data-label]');
   var count = pin.querySelector('[data-count]'), bar = pin.querySelector('[data-bar]');
+  var gusts = pin.querySelectorAll('[data-gust]');
   var n = slides.length, cur = -1, ticking = false;
   function range() { return Math.max(1, pin.offsetHeight - window.innerHeight); }
   function update() {
@@ -31,6 +32,9 @@
     var i = Math.min(n - 1, Math.floor(p * n));
     pin.style.setProperty('--p', p.toFixed(3));
     hex.style.setProperty('--p', p.toFixed(3));
+    // Wind: gusts slide along their paths, trees lean on two gust peaks per slide.
+    hex.style.setProperty('--w', Math.pow(Math.sin(p * Math.PI * n * 2), 2).toFixed(3));
+    gusts.forEach(function (g) { g.setAttribute('stroke-dashoffset', (-p * 3 * g.dataset.gust).toFixed(3)); });
     bar.style.width = (p * 100).toFixed(1) + '%';
     if (i === cur) return;
     cur = i;
@@ -215,6 +219,28 @@
     window.addEventListener('resize', function () { layout(); kick(); });
     document.addEventListener('visibilitychange', kick);
     layout(); kick();
+  })();
+
+  // ---------- Services: the plant between the couple grows; each service appears as it passes ----------
+  (function () {
+    var sec = document.querySelector('[data-grow]');
+    if (!sec || reduce) return;
+    var parts = sec.querySelectorAll('[data-y]'), items = sec.querySelectorAll('[data-at]'), ticking = false;
+    function update() {
+      ticking = false;
+      var g = clamp(-sec.getBoundingClientRect().top / Math.max(1, sec.offsetHeight - window.innerHeight), 0, 1);
+      for (var i = 0; i < parts.length; i++) {
+        var el = parts[i], at = (452 - el.dataset.y) / 406 * 0.8; // stem tip climbs y 452 to 46 over the first 80% of the scroll
+        var k = smooth(at, at + +(el.dataset.span || 0.1), g);
+        if ('draw' in el.dataset) el.setAttribute('stroke-dashoffset', (1 - k).toFixed(3));
+        else el.style.transform = 'scale(' + k.toFixed(3) + ')';
+      }
+      items.forEach(function (it) { it.classList.toggle('on', g >= +it.dataset.at); });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
   })();
 
   // ---------- One shade: liquid fill + shade card scrolling along ----------
