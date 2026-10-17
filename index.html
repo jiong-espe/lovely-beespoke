@@ -46,11 +46,44 @@
 <a class="btn btn-l" href="#bea">Start a custom order</a>
 </div>
 </div>
-<div class="hero-art">
-<div class="hex hx-a"></div>
-<div class="hex hx-b"></div>
-<div class="hex hx-c"></div>
-<div class="hero-label" data-nozzle>[Hero product photo]</div>
+<div class="hero-art" aria-hidden="true">
+<!-- Folk bee: the right half is drawn once and mirrored with <use> so it stays symmetric -->
+<svg class="folk-bee" viewBox="0 0 430 510" fill="none" stroke="#2B2629" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<defs><clipPath id="bee-abd"><path d="M215 228C252 228 260 282 248 320C240 344 224 354 215 364C206 354 190 344 182 320C170 282 178 228 215 228Z"/></clipPath></defs>
+<circle cx="215" cy="255" r="200" fill="#F3EEF8" stroke="none"/>
+<circle cx="215" cy="255" r="186" stroke="#DCCFE3" stroke-width="1.5" stroke-dasharray="2 7"/>
+<g id="bee-half">
+<path d="M262 120C300 92 336 78 372 74"/>
+<path d="M290 102c2-14 12-22 22-22c-2 12-10 20-22 22ZM318 88c4-14 14-20 24-18c-4 12-12 18-24 18ZM346 78c6-12 16-16 26-12c-6 10-14 14-26 12ZM296 98c12 6 16 16 14 26c-10-4-14-14-14-26ZM326 86c12 4 18 14 16 24c-10-2-16-12-16-24Z" fill="#9DB5A0"/>
+<path d="M215 448C262 446 306 420 332 374"/>
+<path d="M246 444c4-16 18-24 30-22c-4 14-16 22-30 22ZM282 428c2-16 14-28 28-28c0 14-12 26-28 28ZM262 440c14 4 22 16 20 28c-12-4-20-14-20-28ZM298 422c14 2 24 12 24 24c-12-2-22-12-24-24Z" fill="#9DB5A0"/>
+<g transform="translate(336 368) rotate(32)"><path d="M-14 0C-16-18-10-26-8-28L-3-18L0-30L3-18L8-28C10-26 16-18 14 0C8 6-8 6-14 0Z" fill="#D38FA5"/></g>
+<path d="M238 206l30-10l10-20M240 226l34 12l6 22M240 300l28 16l2 26" stroke-width="2.4"/>
+<path class="wing" d="M236 196C270 140 352 120 384 150C410 176 372 226 300 228C270 229 248 222 236 210Z" fill="#F2C4CE"/>
+<path d="M248 208C290 192 330 174 368 160M280 196l-6-14M300 188l-6-14M320 180l-6-14M340 172l-6-14M280 196l4 14M300 188l4 14M320 180l4 14M340 172l4 14" stroke="#9E5C79" stroke-width="1.6"/>
+<path class="wing" d="M238 238C280 236 344 252 350 290C356 326 300 320 270 296C254 284 242 266 236 250Z" fill="#C8B8E0"/>
+<path d="M258 256C290 262 316 274 332 296" stroke="#7E6AA8" stroke-width="1.6"/>
+<path d="M222 158C228 134 240 118 256 108"/>
+<circle cx="260" cy="104" r="8" fill="#D38FA5"/>
+<g stroke="none"><circle cx="260" cy="104" r="2.5" fill="#F2C14E"/><circle cx="360" cy="146" r="3" fill="#D38FA5"/><circle cx="388" cy="182" r="3" fill="#D38FA5"/><circle cx="296" cy="300" r="3" fill="#7E6AA8"/><circle cx="318" cy="310" r="3" fill="#7E6AA8"/><circle cx="392" cy="236" r="3.5" fill="#F2C14E"/><circle cx="356" cy="336" r="3" fill="#9E5C79"/><circle cx="318" cy="64" r="3" fill="#F2C14E"/></g>
+</g>
+<use href="#bee-half" transform="matrix(-1 0 0 1 430 0)"/>
+<ellipse cx="215" cy="210" rx="26" ry="22" fill="#7E6AA8"/>
+<path d="M215 196l12 14l-12 14l-12-14Z" fill="#F8E1E6"/>
+<path d="M215 204l5 6l-5 6l-5-6Z" fill="#9E5C79" stroke="none"/>
+<path d="M215 228C252 228 260 282 248 320C240 344 224 354 215 364C206 354 190 344 182 320C170 282 178 228 215 228Z" fill="#F2C14E"/>
+<g clip-path="url(#bee-abd)" stroke="none"><rect x="170" y="252" width="90" height="16" fill="#C8B8E0"/><rect x="170" y="284" width="90" height="16" fill="#F2C4CE"/><rect x="170" y="316" width="90" height="14" fill="#C8B8E0"/></g>
+<path d="M201 256l14 8l14-8" stroke="#7E6AA8" stroke-width="1.6"/>
+<path d="M201 288l14 8l14-8" stroke="#9E5C79" stroke-width="1.6"/>
+<path d="M205 319l10 6l10-6" stroke="#7E6AA8" stroke-width="1.6"/>
+<path d="M215 228C252 228 260 282 248 320C240 344 224 354 215 364C206 354 190 344 182 320C170 282 178 228 215 228Z"/>
+<path d="M211 362l4 14l4-14Z" fill="#2B2629"/>
+<circle cx="215" cy="174" r="20" fill="#2B2629"/>
+<circle cx="215" cy="172" r="6" fill="#F2C4CE" stroke="none"/>
+<circle cx="215" cy="172" r="2" fill="#F2C14E" stroke="none"/>
+<path d="M215 470c-10-10-22-14-22-24c0-8 10-12 22-2c12-10 22-6 22 2c0 10-12 14-22 24Z" fill="#D38FA5"/>
+</svg>
+<span class="nozzle" data-nozzle></span>
 </div>
 </div>
 
@@ -62,12 +95,102 @@
 <canvas class="smoke" data-smoke aria-hidden="true"></canvas>
 
 <!-- MADE FOR -->
-<div style="border-top:1px solid #EDE4EA;border-bottom:1px solid #EDE4EA;padding:28px 0;overflow-x:auto">
+<div class="made-for">
 <div class="wrap" style="display:flex;align-items:center;gap:12px">
 <span class="muted" style="font-size:16px;white-space:nowrap;margin-right:8px">Made for</span>
 <span class="pill">a birthday</span><span class="pill">a wedding</span><span class="pill">a baby shower</span><span class="pill">a giveaway</span><span class="pill">a thank-you</span><span class="pill">just because</span>
 </div>
 </div>
+
+<!-- SERVICES: folk couple pins while the plant between them grows; each service appears as the plant reaches it -->
+<section class="grow-scene" data-grow>
+<div class="grow-stage">
+<div class="wrap grow-head">
+<div class="eyebrow" style="color:#7E6AA8">What we do</div>
+<h2>Little ideas, <em>grown with care.</em></h2>
+</div>
+<div class="wrap grow-in">
+<div class="svc-col">
+<div class="svc" data-at=".12"><span>01</span><b>[SERVICE NAME]</b><p>e.g. Custom orders. A line on what’s included and lead time.</p></div>
+<div class="svc" data-at=".48"><span>03</span><b>[SERVICE NAME]</b><p>e.g. Event and brand giveaways. A line on minimums and packing.</p></div>
+</div>
+<div class="couple-panel" aria-hidden="true">
+<svg viewBox="0 10 400 462" fill="none" stroke="#2B2629" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<defs><pattern id="apron-zig" width="12" height="10" patternUnits="userSpaceOnUse"><path d="M6 0l4 5l-4 5" stroke="#9E5C79" stroke-width="1.4"/></pattern></defs>
+<path d="M30 452C130 444 270 444 370 452"/>
+<!-- plant sits behind the figures so the joined hands cover the stem; script.js grows each [data-y] part as the stem tip passes it -->
+<g>
+<path data-y="452" data-span=".8" data-draw pathLength="1" stroke-dasharray="1 2" d="M200 452C196 380 204 320 200 250C197 180 203 110 200 46" stroke-width="2.4"/>
+<path data-y="176" data-span=".12" data-draw pathLength="1" stroke-dasharray="1 2" d="M200 176C198 140 176 112 160 80"/>
+<path data-y="176" data-span=".12" data-draw pathLength="1" stroke-dasharray="1 2" d="M200 176C202 140 224 112 240 80"/>
+<g transform="translate(200 424) rotate(-28)"><path class="lf" data-y="424" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 424) scale(-1 1) rotate(-28)"><path class="lf" data-y="424" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 386) rotate(-28)"><path class="lf" data-y="386" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 386) scale(-1 1) rotate(-28)"><path class="lf" data-y="386" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 346) rotate(-28)"><path class="lf" data-y="346" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 346) scale(-1 1) rotate(-28)"><path class="lf" data-y="346" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 252) rotate(-28)"><path class="lf" data-y="252" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 252) scale(-1 1) rotate(-28)"><path class="lf" data-y="252" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 212) rotate(-28)"><path class="lf" data-y="212" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 212) scale(-1 1) rotate(-28)"><path class="lf" data-y="212" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 104) rotate(-34) scale(.75)"><path class="lf" data-y="104" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<g transform="translate(200 104) scale(-.75 .75) rotate(-34)"><path class="lf" data-y="104" d="M0 0C8-11 26-12 36-2C26 6 10 8 0 0Z" fill="#9DB5A0"/></g>
+<circle class="bl" data-y="140" cx="180" cy="142" r="4" fill="#F2C4CE"/>
+<circle class="bl" data-y="140" cx="220" cy="142" r="4" fill="#F2C4CE"/>
+<circle class="bl" data-y="120" cx="186" cy="122" r="3.5" fill="#C8B8E0"/>
+<circle class="bl" data-y="120" cx="214" cy="122" r="3.5" fill="#C8B8E0"/>
+<g transform="translate(160 80) rotate(-20)"><path class="bl" data-y="104" d="M-14 0C-16-18-10-26-8-28L-3-18L0-30L3-18L8-28C10-26 16-18 14 0C8 6-8 6-14 0Z" fill="#D38FA5"/></g>
+<g transform="translate(240 80) rotate(20)"><path class="bl" data-y="104" d="M-14 0C-16-18-10-26-8-28L-3-18L0-30L3-18L8-28C10-26 16-18 14 0C8 6-8 6-14 0Z" fill="#D38FA5"/></g>
+<g transform="translate(200 48) scale(1.2)"><path class="bl" data-y="50" d="M-14 0C-16-18-10-26-8-28L-3-18L0-30L3-18L8-28C10-26 16-18 14 0C8 6-8 6-14 0Z" fill="#9E5C79"/></g>
+</g>
+<!-- her -->
+<path d="M84 152L84 118C84 90 136 90 136 118L136 152Z" fill="#F7E4A6"/>
+<ellipse cx="110" cy="124" rx="18" ry="21" fill="#F8E1E6"/>
+<path d="M92 112C100 100 120 100 128 112L128 106C122 96 98 96 92 106Z" fill="#F7E4A6"/>
+<rect x="92" y="88" width="36" height="8" rx="2" fill="#7E6AA8"/>
+<circle cx="96" cy="82" r="5" fill="#D38FA5"/><circle cx="104" cy="76" r="5" fill="#F2C4CE"/><circle cx="112" cy="80" r="5" fill="#F2C14E"/><circle cx="120" cy="75" r="5" fill="#D38FA5"/><circle cx="127" cy="83" r="5" fill="#F2C4CE"/>
+<g stroke="none"><circle cx="103" cy="123" r="1.8" fill="#2B2629"/><circle cx="117" cy="123" r="1.8" fill="#2B2629"/><circle cx="100" cy="131" r="3" fill="#F2C4CE"/><circle cx="120" cy="131" r="3" fill="#F2C4CE"/><ellipse cx="110" cy="136" rx="3" ry="1.5" fill="#D38FA5"/></g>
+<path d="M88 154C72 160 66 200 64 240L78 242C80 205 86 180 92 170Z" fill="#FCF9F8"/>
+<circle cx="71" cy="252" r="6" fill="#F8E1E6"/>
+<path d="M132 154C150 170 170 230 188 284L176 290C160 245 140 200 128 176Z" fill="#FCF9F8"/>
+<path d="M88 152C96 148 124 148 132 152L136 210L84 210Z" fill="#FCF9F8"/>
+<path d="M94 151L110 178L126 151L118 151L110 166L102 151Z" fill="#D38FA5"/>
+<path d="M84 212L136 212L162 430L58 430Z" fill="#D38FA5"/>
+<path d="M94 214L126 214L138 400L82 400Z" fill="#FCF9F8"/>
+<path d="M94 214L126 214L138 400L82 400Z" fill="url(#apron-zig)"/>
+<rect x="82" y="206" width="56" height="9" rx="2" fill="#9DB5A0"/>
+<path d="M62 422L158 422" stroke="#FCF9F8" stroke-width="3" stroke-dasharray="1 6"/>
+<ellipse cx="92" cy="438" rx="12" ry="5" fill="#2B2629"/><ellipse cx="128" cy="438" rx="12" ry="5" fill="#2B2629"/>
+<!-- him -->
+<path d="M268 112L268 142L312 142L312 112Z" fill="#F7E4A6"/>
+<ellipse cx="290" cy="128" rx="18" ry="21" fill="#F8E1E6"/>
+<path d="M268 64L312 64L316 108L264 108Z" fill="#2B2629"/>
+<rect x="264" y="96" width="52" height="10" fill="#C8B8E0"/>
+<ellipse cx="290" cy="110" rx="40" ry="6" fill="#2B2629"/>
+<g stroke="none"><circle cx="283" cy="127" r="1.8" fill="#2B2629"/><circle cx="297" cy="127" r="1.8" fill="#2B2629"/><circle cx="280" cy="135" r="3" fill="#F2C4CE"/><circle cx="300" cy="135" r="3" fill="#F2C4CE"/><ellipse cx="290" cy="140" rx="3" ry="1.5" fill="#D38FA5"/></g>
+<path d="M266 338L288 338L288 400L268 400Z" fill="#9DB5A0"/><path d="M292 338L314 338L312 400L292 400Z" fill="#9DB5A0"/>
+<path d="M266 398L290 398L290 438L262 438Z" fill="#2B2629"/><path d="M290 398L314 398L318 438L290 438Z" fill="#2B2629"/>
+<rect x="266" y="398" width="48" height="6" fill="#C8B8E0"/>
+<path d="M318 154C334 170 340 220 344 270L330 272C326 230 320 200 312 180Z" fill="#7E6AA8"/>
+<circle cx="337" cy="280" r="6" fill="#F8E1E6"/>
+<path d="M262 154C246 175 226 240 212 284L224 290C236 250 252 205 268 180Z" fill="#7E6AA8"/>
+<path d="M260 152C272 146 308 146 320 152L334 340L246 340Z" fill="#7E6AA8"/>
+<path d="M281 150L299 150L301 265L279 265Z" fill="#FCF9F8"/>
+<path d="M280 148L290 166L300 148" fill="#FCF9F8"/>
+<path d="M286 160L290 168L294 160Z" fill="#2B2629"/>
+<g fill="#2B2629" stroke="none"><circle cx="290" cy="180" r="2"/><circle cx="290" cy="198" r="2"/><circle cx="290" cy="216" r="2"/><circle cx="290" cy="234" r="2"/></g>
+<rect x="279" y="252" width="22" height="12" fill="#D38FA5"/>
+<!-- joined hands over the stem -->
+<circle cx="194" cy="294" r="8" fill="#F8E1E6"/><circle cx="206" cy="296" r="8" fill="#F8E1E6"/>
+</svg>
+</div>
+<div class="svc-col">
+<div class="svc" data-at=".3"><span>02</span><b>[SERVICE NAME]</b><p>e.g. Party favor bundles. A line on themes and guest counts.</p></div>
+<div class="svc" data-at=".66"><span>04</span><b>[SERVICE NAME]</b><p>e.g. Gift wrapping and notes. A line on what’s included.</p></div>
+</div>
+</div>
+</div>
+</section>
 
 <!-- YOURS: outlined type fills with colour while a custom-order card scrolls along -->
 <section class="fill-scene" data-fill>
@@ -120,7 +243,37 @@
 <div class="pin-nav"><button class="pin-btn active" type="button">C</button><button class="pin-btn" type="button">F</button><button class="pin-btn" type="button">G</button><button class="pin-btn" type="button">P</button></div>
 <div class="pin-bar"><span data-bar></span></div>
 </div>
-<div class="pin-art" aria-hidden="true"><div class="big-hex" data-hex></div><div class="art-label" data-label>[Product photo]</div></div>
+<div class="pin-art" aria-hidden="true"><div class="scene" data-hex>
+<!-- Folk landscape: scroll blows the gusts along their paths, drifts the petals and sways the trees (script.js sets --p, --w) -->
+<svg viewBox="0 0 500 400" fill="none" stroke="#2B2629" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<defs><clipPath id="scene-clip"><rect width="500" height="400" rx="18"/></clipPath></defs>
+<g clip-path="url(#scene-clip)">
+<rect width="500" height="400" fill="#DCCFE3" stroke="none"/>
+<circle class="sun" cx="370" cy="110" r="60" stroke="none"/>
+<circle cx="370" cy="110" r="72" stroke-dasharray="2 7"/>
+<g stroke="#FCF9F8" stroke-width="7">
+<path data-gust="1" pathLength="1" stroke-dasharray=".5 .5" d="M-20 70C40 50 110 90 170 72C214 58 226 28 202 22C184 18 176 40 192 46"/>
+<path data-gust="1.4" pathLength="1" stroke-dasharray=".5 .5" d="M20 180C100 160 170 196 240 170C280 155 282 126 260 122C242 120 240 140 254 144"/>
+<path data-gust=".8" pathLength="1" stroke-dasharray=".5 .5" d="M300 230C360 214 430 236 520 212"/>
+</g>
+<path d="M-10 250C70 180 150 160 230 220C290 262 390 190 510 222V410H-10Z" fill="#F2C4CE" stroke="none"/>
+<path d="M20 252C80 206 150 196 220 240M40 272C100 236 170 230 240 262M330 236C380 214 440 210 500 226" stroke="#FCF9F8"/>
+<path d="M-10 310C110 250 220 268 300 296C380 324 440 276 510 286V410H-10Z" fill="#9DB5A0" stroke="none"/>
+<path d="M30 320C120 280 210 290 290 316M60 340C140 310 220 318 300 336" stroke="#FCF9F8"/>
+<path d="M312 276H356V308H312Z" fill="#FCF9F8"/>
+<path d="M306 278L334 252L362 278Z" fill="#9E5C79"/>
+<rect x="320" y="286" width="10" height="10" fill="#F2C14E"/>
+<rect x="338" y="290" width="10" height="18" fill="#7E6AA8"/>
+<g class="tree"><path d="M250 316V286"/><path d="M250 290C236 280 236 252 250 236C264 252 264 280 250 290Z" fill="#7E6AA8"/><path d="M250 284V246M250 262l-6-6M250 262l6-6M250 274l-7-6M250 274l7-6" stroke="#FCF9F8"/></g>
+<g class="tree"><path d="M412 304V280"/><path d="M412 284C400 276 400 252 412 238C424 252 424 276 412 284Z" fill="#7E6AA8"/><path d="M412 278V248M412 262l-5-5M412 262l5-5" stroke="#FCF9F8"/></g>
+<path d="M-10 350C140 320 320 344 510 330V410H-10Z" fill="#F8E1E6" stroke="none"/>
+<path d="M20 370C160 346 320 364 480 352" stroke="#D38FA5" stroke-dasharray="4 6"/>
+<g class="drift" fill="#FCF9F8" stroke="none"><circle cx="-180" cy="60" r="3"/><circle cx="-140" cy="120" r="3"/><circle cx="-100" cy="40" r="2.5"/><circle cx="-60" cy="180" r="3"/><circle cx="-20" cy="90" r="2.5"/><circle cx="20" cy="140" r="3"/><circle cx="60" cy="60" r="2.5"/><circle cx="100" cy="200" r="3"/><circle cx="-120" cy="230" r="3"/><circle cx="-40" cy="250" r="2.5"/><circle cx="140" cy="100" r="3"/><circle cx="200" cy="240" r="2.5"/><circle cx="260" cy="60" r="3"/></g>
+<g class="drift drift-2" fill="#D38FA5" stroke="none"><circle cx="-220" cy="150" r="2"/><circle cx="-160" cy="80" r="2"/><circle cx="-90" cy="210" r="2"/><circle cx="-30" cy="30" r="2"/><circle cx="40" cy="110" r="2"/><circle cx="110" cy="40" r="2"/><circle cx="180" cy="150" r="2"/></g>
+</g>
+</svg>
+<div class="art-label" data-label>[Product photo]</div>
+</div></div>
 </div>
 </div>
 </section>
@@ -133,10 +286,19 @@
 <h2 style="margin:0;font-size:clamp(42px,5.4vw,70px);font-weight:300;line-height:1.08;letter-spacing:-0.015em">Made the way a <em>hive</em> works.</h2>
 <p class="muted" style="margin:0;font-size:20px;font-weight:300;max-width:480px">Small batches, careful hands, and every piece checked before it leaves the hive. Nothing mass-produced, nothing rushed.</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:20px">
-<div style="display:flex;gap:20px;align-items:center;border-top:1px solid #DCCFE3;padding-top:20px"><span style="font-size:32px;font-weight:300;color:#7E6AA8;width:48px">01</span><span style="font-size:20px">Tell us what you’re celebrating.</span></div>
-<div style="display:flex;gap:20px;align-items:center;border-top:1px solid #DCCFE3;padding-top:20px"><span style="font-size:32px;font-weight:300;color:#7E6AA8;width:48px">02</span><span style="font-size:20px">We sketch, craft and personalize it.</span></div>
-<div style="display:flex;gap:20px;align-items:center;border-top:1px solid #DCCFE3;padding-top:20px"><span style="font-size:32px;font-weight:300;color:#7E6AA8;width:48px">03</span><span style="font-size:20px">Wrapped with care, ready to give.</span></div>
+<div class="hive-stack">
+<!-- Stacked-leaf hierarchy: each leaf lines up with its step in the grid row beside it -->
+<svg class="stack-art" viewBox="0 0 300 480" aria-hidden="true">
+<path d="M150 0L262 480H38Z" fill="#7E6AA8"/>
+<g fill="#F3EEF8" opacity=".35"><circle cx="140" cy="160" r="1.5"/><circle cx="170" cy="200" r="1"/><circle cx="120" cy="330" r="1.5"/><circle cx="190" cy="360" r="1"/><circle cx="150" cy="440" r="1.5"/><circle cx="110" cy="450" r="1"/></g>
+<path class="leaf" style="--x:-40px" d="M10 80Q130 22 250 80Q130 138 10 80Z" fill="#F2C4CE"/>
+<g fill="#2B2629"><circle cx="176" cy="70" r="3"/><circle cx="190" cy="66" r="3"/><circle cx="204" cy="70" r="3"/><circle cx="218" cy="76" r="3"/><circle cx="184" cy="80" r="3"/><circle cx="198" cy="82" r="3"/><circle cx="212" cy="88" r="3"/><circle cx="196" cy="94" r="2.5"/></g>
+<path class="leaf" style="--x:40px" d="M60 240Q170 182 290 240Q170 298 60 240Z" fill="#F2C14E"/>
+<path class="leaf" style="--x:-40px" d="M24 400Q148 342 272 400Q148 458 24 400Z" fill="#9E5C79"/>
+</svg>
+<div class="step"><span>01</span><span>Tell us what you’re celebrating.</span></div>
+<div class="step"><span>02</span><span>We sketch, craft and personalize it.</span></div>
+<div class="step"><span>03</span><span>Wrapped with care, ready to give.</span></div>
 </div>
 </div>
 </div>
@@ -146,6 +308,42 @@
 <div style="display:flex;flex-direction:column;gap:24px">
 <h2 style="margin:0;font-size:clamp(42px,5.4vw,70px);font-weight:300;line-height:1.08;letter-spacing:-0.015em">Hi, I’m Bea. Tell me what you’re <em>celebrating.</em></h2>
 <p class="muted" style="margin:0;font-size:20px;font-weight:300;max-width:460px">Your gift and party helper: share the occasion, the guest count and your colors, and Bea suggests favors and gifts to match.</p>
+</div>
+<div class="bea-art" aria-hidden="true">
+<!-- Bea in folk line art: direct-child strokes draw themselves in on reveal, .fl fills fade in after -->
+<svg viewBox="0 0 300 440" fill="none" stroke="#2B2629" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle pathLength="1" cx="106" cy="74" r="22"/>
+<path pathLength="1" d="M106 74c0-4 6-4 6 0c0 8-14 8-14 0c0-12 22-12 22 0c0 16-30 16-30 0"/>
+<circle pathLength="1" cx="194" cy="74" r="22"/>
+<path pathLength="1" d="M194 74c0-4-6-4-6 0c0 8 14 8 14 0c0-12-22-12-22 0c0 16 30 16 30 0"/>
+<path pathLength="1" d="M114 104C112 58 188 58 186 104"/>
+<path pathLength="1" d="M150 62C146 74 138 84 122 92M150 62C154 74 162 84 178 92"/>
+<path pathLength="1" d="M116 100C114 140 130 160 150 160C170 160 186 140 184 100"/>
+<path pathLength="1" d="M128 112c5 5 12 5 16 0M156 112c4 5 11 5 16 0M131 116l-2 4M136 117v4M141 116l2 4M159 116l-2 4M164 117v4M169 116l2 4"/>
+<path pathLength="1" d="M150 116c-2 8-4 12-1 14h4"/>
+<path class="fl" d="M143 140c4-3 10-3 14 0c-4 5-10 5-14 0Z" fill="#D38FA5"/>
+<g class="fl" fill="#F2C4CE" stroke="none"><circle cx="128" cy="130" r="6"/><circle cx="172" cy="130" r="6"/></g>
+<g class="fl" fill="#2B2629"><path d="M116 118c-6 10-6 22 0 30c6-8 6-20 0-30Z"/><path d="M184 118c-6 10-6 22 0 30c6-8 6-20 0-30Z"/></g>
+<path pathLength="1" d="M140 158V178M160 158V178"/>
+<path pathLength="1" d="M140 178C118 182 104 194 100 214C92 280 52 350 36 420H264C248 350 208 280 200 214C196 194 182 182 160 178"/>
+<path pathLength="1" d="M122 186C134 206 166 206 178 186"/>
+<path pathLength="1" d="M150 206V404"/>
+<path pathLength="1" d="M138 206c-2-14 4-22 6-24l4 8l2-10l2 10l4-8c2 2 8 10 6 24c-6 5-18 5-24 0Z"/>
+<g class="fl" fill="#2B2629"><path d="M150 248c-14-2-24-12-26-24c14 0 24 10 26 24Z"/><path d="M150 248c14-2 24-12 26-24c-14 0-24 10-26 24Z"/><path d="M150 298c-16-2-28-14-30-28c16 0 28 12 30 28Z"/><path d="M150 298c16-2 28-14 30-28c-16 0-28 12-30 28Z"/><path d="M150 350c-18-2-32-16-34-32c18 0 32 14 34 32Z"/><path d="M150 350c18-2 32-16 34-32c-18 0-32 14-34 32Z"/></g>
+<path pathLength="1" d="M150 392C118 384 94 366 84 336M150 392C182 384 206 366 216 336"/>
+<path pathLength="1" d="M100 370c-12 0-20-8-20-18c12 0 20 8 20 18ZM200 370c12 0 20-8 20-18c-12 0-20 8-20 18ZM120 384c-6 10-16 14-24 12c4-10 14-14 24-12ZM180 384c6 10 16 14 24 12c-4-10-14-14-24-12Z"/>
+<circle pathLength="1" cx="84" cy="328" r="8"/>
+<circle pathLength="1" cx="216" cy="328" r="8"/>
+<g class="fl" fill="#D38FA5" stroke="none"><circle cx="84" cy="328" r="3"/><circle cx="216" cy="328" r="3"/></g>
+<path pathLength="1" d="M36 420c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0c6-9 13-9 19 0"/>
+<g class="fl">
+<path d="M200 300c30-10 50-30 40-50c-6-12-22-6-16 6" stroke-dasharray="2 5"/>
+<path d="M240 214c-8-12-2-20 6-16M248 212c2-14 12-16 16-8" fill="#FCF9F8"/>
+<ellipse cx="250" cy="222" rx="10" ry="7" fill="#F2C14E" transform="rotate(-20 250 222)"/>
+<path d="M248 216l-3 12M254 214l-3 12"/>
+<text x="226" y="164" font-family="Callem, 'Cormorant Garamond', serif" font-size="30" fill="#9E5C79" stroke="none">Bea</text>
+</g>
+</svg>
 </div>
 <div style="background:#F3EEF8;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:14px">
 <div style="align-self:flex-end;background:#2B2629;color:#FCF9F8;border-radius:20px 20px 4px 20px;padding:14px 20px;max-width:80%;font-size:17px">Favors for a baby shower, 30 guests, lilac theme?</div>
