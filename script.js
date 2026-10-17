@@ -118,6 +118,7 @@
     if (!scene || !cv || reduce) return;
     var stage = scene.querySelector('[data-hero-stage]'), fx = scene.querySelector('[data-hero-fx]');
     var cue = scene.querySelector('[data-cue]'), ctx = cv.getContext('2d');
+    var next = document.querySelector('[data-grow] .grow-stage');
     var r = rng(7), light = makeSprites(LIGHT, 5, r), deep = makeSprites(DEEP, 3, r);
     // Static grain knocked out of the smoke's alpha: dithers gradient banding and reads as fine mist.
     var gc = document.createElement('canvas'); gc.width = gc.height = 128;
@@ -204,6 +205,12 @@
       fx.style.transform = sc > 1.0005 ? 'scale(' + sc.toFixed(4) + ')' : '';
       fx.style.visibility = op <= 0.002 ? 'hidden' : '';
       cue.style.opacity = (1 - smooth(0, 0.05, p)).toFixed(3);
+      if (next) { // the services scene emerges from the cloud as it clears
+        var em = smooth(0.85, 1.35, p);
+        next.style.opacity = em < 1 ? em.toFixed(3) : '';
+        next.style.filter = em < 1 ? 'blur(' + (14 * (1 - em)).toFixed(2) + 'px)' : '';
+        next.style.transform = em < 1 ? 'scale(' + (1.05 - 0.05 * em).toFixed(4) + ')' : '';
+      }
 
       draw(p, t);
       if (p > 0 && p < 1.6 && !document.hidden) { running = true; requestAnimationFrame(frame); } // keep swirling while visible
