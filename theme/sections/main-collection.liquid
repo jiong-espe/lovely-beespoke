@@ -1,0 +1,22 @@
+{%- paginate collection.products by section.settings.per_page -%}
+<section class="wrap shop-page">
+<div class="featured-head" style="text-align:left">
+<div class="eyebrow" style="color:#7E6AA8">Collection</div>
+<h1 class="page-title">{{ collection.title }}</h1>
+{%- if collection.description != blank %}<div class="rte muted">{{ collection.description }}</div>{% endif %}
+</div>
+<div class="product-grid">
+{%- for product in collection.products -%}{% render 'product-card', product: product %}{%- else -%}<p class="muted">Nothing here yet. New pieces are on the way.</p>{%- endfor -%}
+</div>
+{%- if paginate.pages > 1 %}<nav class="pagination" aria-label="Pages">{{ paginate | default_pagination }}</nav>{% endif %}
+</section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 4, "max": 24, "step": 4, "default": 12 }
+  ]
+}
+{% endschema %}

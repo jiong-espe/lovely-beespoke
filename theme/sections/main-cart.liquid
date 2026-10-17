@@ -1,0 +1,39 @@
+<section class="wrap shop-page cart">
+<h1 class="page-title">Your cart</h1>
+{%- if cart.item_count > 0 -%}
+<form action="{{ routes.cart_url }}" method="post" class="cart-form">
+{%- for item in cart.items -%}
+<div class="cart-row">
+<a class="cart-img" href="{{ item.url }}">{% if item.image %}{{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.title }}{% endif %}</a>
+<div class="cart-meta">
+<a href="{{ item.url }}" class="cart-t">{{ item.product.title }}</a>
+{%- unless item.product.has_only_default_variant %}<div class="muted">{{ item.variant.title }}</div>{% endunless -%}
+{%- for p in item.properties -%}{%- if p.last != blank -%}<div class="muted">{{ p.first }}: {{ p.last }}</div>{%- endif -%}{%- endfor -%}
+<a class="muted cart-remove" href="{{ item.url_to_remove }}">Remove</a>
+</div>
+<label class="sr-only" for="q-{{ forloop.index }}">Quantity for {{ item.product.title }}</label>
+<input id="q-{{ forloop.index }}" class="field qty" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+<div class="cart-price">{{ item.final_line_price | money }}</div>
+</div>
+{%- endfor -%}
+<div class="cart-foot">
+<div>
+<label class="field-label" for="note">Gift note</label>
+<textarea id="note" class="field" name="note" rows="3" placeholder="A little message to tuck in the box (optional)">{{ cart.note }}</textarea>
+</div>
+<div class="cart-total">
+<div class="cart-sub"><span>Subtotal</span><b>{{ cart.total_price | money_with_currency }}</b></div>
+<p class="muted">Taxes and shipping are calculated at checkout.</p>
+<div class="hero-ctas"><button class="btn btn-l" type="submit" name="update">Update</button><button class="btn btn-d" type="submit" name="checkout">Check out</button></div>
+</div>
+</div>
+</form>
+{%- else -%}
+<p class="muted">Your cart is empty. The hive is full of little things to fill it.</p>
+<a class="btn btn-d" href="{{ routes.all_products_collection_url }}">Shop the collection</a>
+{%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

@@ -159,22 +159,43 @@ h1 em{color:#9E5C79}
 @media (prefers-reduced-motion:reduce){.grow-scene{height:auto}.grow-stage{position:static;height:auto;padding:96px 0}}
 
 
-/* How it's made: stacked leaves on a triangle; rows split the art's height so each leaf sits beside its step */
-#ritual{min-height:100vh;min-height:100svh;display:flex;align-items:center}
-#ritual > .wrap{width:100%}
-@media (min-width:900px){#ritual .hero{grid-template-columns:.8fr 1.2fr}#bea{grid-template-columns:1fr 1.25fr 1fr}}
-.hive-stack{display:grid;grid-template-columns:minmax(140px,38svh) minmax(0,1fr);grid-template-rows:repeat(3,1fr);column-gap:28px;align-items:center}
-.stack-art{grid-row:1/4;width:100%;height:auto;overflow:visible}
-.stack-art .leaf{fill-opacity:.92;transform-box:fill-box;transform-origin:center}
-.step{display:flex;gap:16px;align-items:baseline;border-top:1px solid #DCCFE3;padding-top:12px;font-size:20px}
-.step span:first-child{font-size:28px;font-weight:300;color:#7E6AA8}
+/* How it's made: pins while each step comes to life in order (script.js); the stitched thread fills down the hierarchy */
+@media (min-width:900px){#bea{grid-template-columns:1fr 1.25fr 1fr}}
+.steps-scene{position:relative;height:300vh;background:#F3EEF8}
+.steps-stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
+.steps-stage > .wrap{width:100%}
+.steps-copy{display:flex;flex-direction:column;gap:24px}
+.steps-copy h2{margin:0;font-size:clamp(42px,5.4vw,70px);line-height:1.08;letter-spacing:-0.015em}
+.steps-copy p{margin:0;font-size:20px;font-weight:300;max-width:480px}
+.steps-list{--art:clamp(84px,17svh,160px);position:relative;display:flex;flex-direction:column;gap:clamp(16px,3.5svh,40px)}
+.steps-thread{position:absolute;left:calc(var(--art) / 2 - 1px);top:10%;bottom:10%;border-left:2px dashed #DCCFE3}
+.steps-thread i{position:absolute;left:-2px;top:0;width:2px;height:100%;background:#7E6AA8;transform-origin:top}
+.step-row{position:relative;display:grid;grid-template-columns:var(--art) 1fr;gap:28px;align-items:center}
+.step-art{position:relative;z-index:1;aspect-ratio:1;border-radius:50%;background:#FCF9F8;box-shadow:0 0 0 1px #DCCFE3;display:grid;place-items:center}
+.step-art svg{width:76%;height:76%;overflow:visible}
+.step-art .f{transform-box:fill-box;transform-origin:center}
+.step-text span{display:block;font-size:28px;font-weight:300;color:#7E6AA8;letter-spacing:.04em}
+.step-text p{margin:2px 0 0;font-size:21px}
 @media (prefers-reduced-motion:no-preference){
-.js .stack-art.reveal .leaf{opacity:0;transform:translateX(var(--x));transition:opacity .8s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
-.js .stack-art.in .leaf{opacity:1;transform:none}
-.js .stack-art .leaf:nth-child(5){transition-delay:.2s}
-.js .stack-art .leaf:nth-child(6){transition-delay:.4s}
+.js .steps-scene .d{stroke-dasharray:1 2}
+/* dim the contents, not the row, so the solid circle keeps hiding the thread */
+.js .step-row > .step-text,.js .step-art svg{opacity:.3;transition:opacity .5s ease}
+.js .step-row.done > .step-text,.js .step-row.done .step-art svg{opacity:.6}
+.js .step-row.on > .step-text,.js .step-row.on .step-art svg{opacity:1}
+.js .step-art{transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s}
+.js .step-row.on .step-art{transform:scale(1.1);box-shadow:0 0 0 2px #7E6AA8,0 24px 48px -24px rgba(126,106,168,.6)}
 }
-@media (max-width:640px){.hive-stack{grid-template-columns:110px 1fr;column-gap:20px}.step{font-size:16px}.step span:first-child{font-size:22px}}
+@media (max-width:760px){
+.steps-stage .hero{gap:28px}
+.steps-copy{gap:12px}
+.steps-copy h2{font-size:34px}
+.steps-copy p{font-size:16px}
+.steps-list{--art:74px}
+.step-row{gap:18px}
+.step-text span{font-size:20px}
+.step-text p{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){.steps-scene{height:auto}.steps-stage{position:static;height:auto;padding:112px 0}}
 
 
 /* Bea: folk line-art portrait draws itself in when it scrolls into view */
@@ -208,9 +229,7 @@ h1 em{color:#9E5C79}
 .tree:nth-of-type(2n){animation-delay:-1.4s}
 .drift circle{animation:bob 4s ease-in-out infinite}
 .drift circle:nth-child(2n){animation-duration:5.5s;animation-delay:-2s}
-.stack-art .leaf{animation:bob 6s ease-in-out infinite}
-.stack-art .leaf:nth-child(5){animation-delay:-2s}
-.stack-art .leaf:nth-child(6){animation-delay:-4s}
 .bea-bee{animation:buzz 4s ease-in-out infinite}
+.step-row.on .step-art svg{animation:bob 3s ease-in-out infinite}
 .ear{transform-box:fill-box;transform-origin:50% 0;animation:swing 3s ease-in-out infinite}
 }

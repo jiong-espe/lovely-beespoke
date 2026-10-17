@@ -1,0 +1,41 @@
+<div class="made-for">
+<div class="wrap" style="display:flex;align-items:center;gap:12px">
+<span class="muted" style="font-size:16px;white-space:nowrap;margin-right:8px">{{ section.settings.label }}</span>
+{%- for block in section.blocks -%}
+{%- if block.settings.link != blank -%}<a class="pill" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</a>
+{%- else -%}<span class="pill" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{%- endif -%}
+{%- endfor -%}
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Made for (occasions)",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Made for" }
+  ],
+  "blocks": [
+    {
+      "type": "occasion",
+      "name": "Occasion",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Occasion", "default": "a birthday" },
+        { "type": "url", "id": "link", "label": "Link", "info": "Optional, e.g. a collection for this occasion" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Made for (occasions)",
+      "blocks": [
+        { "type": "occasion", "settings": { "text": "a birthday" } },
+        { "type": "occasion", "settings": { "text": "a wedding" } },
+        { "type": "occasion", "settings": { "text": "a baby shower" } },
+        { "type": "occasion", "settings": { "text": "a giveaway" } },
+        { "type": "occasion", "settings": { "text": "a thank-you" } },
+        { "type": "occasion", "settings": { "text": "just because" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+<!-- SERVICES: emerges from the hero puff (script.js), then the folk couple pins while the plant between them grows; each service appears as the plant reaches it -->
+<section class="grow-scene" data-grow>
+<div class="grow-stage">
+<div class="wrap grow-head">
+{%- if section.settings.eyebrow != blank %}<div class="eyebrow" style="color:#7E6AA8">{{ section.settings.eyebrow }}</div>{% endif %}
+<h2>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+</div>
+<div class="wrap grow-in">
+{%- comment -%} Odd services sit left of the couple, even ones right; data-at staggers them .12, .30, .48, .66 up the plant {%- endcomment -%}
+<div class="svc-col">
+{%- for block in section.blocks -%}{%- assign side = forloop.index0 | modulo: 2 -%}{%- if side == 0 -%}
+<div class="svc" data-at="{{ forloop.index0 | times: 0.18 | plus: 0.12 | round: 2 }}" {{ block.shopify_attributes }}><span>{{ forloop.index | prepend: '0' }}</span><b>{{ block.settings.title }}</b><p>{{ block.settings.text }}</p></div>
+{%- endif -%}{%- endfor -%}
+</div>
+<div class="couple-panel" aria-hidden="true">
+{% render 'art-couple' %}
+</div>
+<div class="svc-col">
+{%- for block in section.blocks -%}{%- assign side = forloop.index0 | modulo: 2 -%}{%- if side == 1 -%}
+<div class="svc" data-at="{{ forloop.index0 | times: 0.18 | plus: 0.12 | round: 2 }}" {{ block.shopify_attributes }}><span>{{ forloop.index | prepend: '0' }}</span><b>{{ block.settings.title }}</b><p>{{ block.settings.text }}</p></div>
+{%- endif -%}{%- endfor -%}
+</div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Services (folk couple)",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What we do" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Little ideas," },
+    { "type": "text", "id": "heading_em", "label": "Heading accent (script, rose)", "default": "grown with care." }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "[SERVICE NAME]" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "A line on what’s included and lead time." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services (folk couple)",
+      "blocks": [
+        { "type": "service", "settings": { "title": "Custom orders", "text": "A line on what’s included and lead time." } },
+        { "type": "service", "settings": { "title": "Party favor bundles", "text": "A line on themes and guest counts." } },
+        { "type": "service", "settings": { "title": "Event and brand giveaways", "text": "A line on minimums and packing." } },
+        { "type": "service", "settings": { "title": "Gift wrapping and notes", "text": "A line on what’s included." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

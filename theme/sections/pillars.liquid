@@ -1,0 +1,72 @@
+<!-- PILLARS (scroll-pinned): one slide per collection block over a full-bleed folk landscape -->
+{%- liquid
+  assign n = section.blocks.size
+  assign pad = ''
+  if n < 10
+    assign pad = '0'
+  endif
+-%}
+<section id="shop" class="pin" data-pin style="--n:{{ n }}">
+<div class="pin-stage">
+<div class="pin-art" aria-hidden="true"><div class="scene" data-hex>
+{% render 'art-landscape', section: section %}
+</div></div>
+<div class="wrap pin-in">
+<div class="pin-copy">
+<h2 class="pin-title">{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+<div class="pin-count"><span data-count>01</span> / {{ pad }}{{ n }}</div>
+<div class="slides">
+{%- for block in section.blocks -%}
+{%- liquid
+  assign c = block.settings.collection
+  assign title = block.settings.title | default: c.title | default: 'Collection'
+  assign text = block.settings.text
+  if text == blank and c.description != blank
+    assign text = c.description | strip_html | truncatewords: 24
+  endif
+-%}
+<article class="slide{% if forloop.first %} active{% endif %}" data-c="{{ block.settings.color }}" data-fg="#2B2629" {{ block.shopify_attributes }}><h3>{{ title }}</h3><p class="muted">{{ text }}</p><a class="slink" href="{{ c.url | default: routes.all_products_collection_url }}">{{ block.settings.link_label | default: 'Shop' }} {{ title | downcase }} →</a></article>
+{%- endfor -%}
+</div>
+<div class="pin-nav">{% for block in section.blocks %}{% assign t = block.settings.title | default: block.settings.collection.title | default: 'C' %}<button class="pin-btn{% if forloop.first %} active{% endif %}" type="button" aria-label="{{ t | escape }}">{{ t | slice: 0 }}</button>{% endfor %}</div>
+<div class="pin-bar"><span data-bar></span></div>
+</div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections (wind scene)",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Four little ways." },
+    { "type": "text", "id": "heading_em", "label": "Heading accent", "default": "One big celebration." }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Title", "info": "Defaults to the collection title" },
+        { "type": "textarea", "id": "text", "label": "Text", "info": "Defaults to the collection description" },
+        { "type": "image_picker", "id": "image", "label": "Sun image", "info": "Shown in the sun. Defaults to the collection image" },
+        { "type": "color", "id": "color", "label": "Sun color", "default": "#F2C4CE" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Shop" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections (wind scene)",
+      "blocks": [
+        { "type": "collection", "settings": { "title": "Crafts", "text": "Handmade pieces for your home and your people, plus a few random things we couldn’t resist making.", "color": "#F2C4CE" } },
+        { "type": "collection", "settings": { "title": "Favors", "text": "Party favors and keepsakes, matched to your theme, your colors and your guest list.", "color": "#C8B8E0" } },
+        { "type": "collection", "settings": { "title": "Giveaways", "text": "Event and brand giveaways, made in small batches and packed with care.", "color": "#F2C14E" } },
+        { "type": "collection", "settings": { "title": "Personalized", "text": "Names, dates and little details that make a gift unmistakably theirs.", "color": "#F8E1E6" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

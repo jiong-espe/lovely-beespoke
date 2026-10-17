@@ -1,0 +1,53 @@
+{%- assign current = product.selected_or_first_available_variant -%}
+<section class="wrap shop-page product">
+<div class="product-media">
+<div class="folk-frame">
+{%- if product.featured_image -%}
+{{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '400,600,800,1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: product.featured_image.alt | default: product.title }}
+{%- else -%}
+{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+{%- endif -%}
+</div>
+{%- if product.images.size > 1 -%}
+<div class="thumbs">
+{%- for image in product.images offset: 1 limit: 4 -%}{{ image | image_url: width: 300 | image_tag: loading: 'lazy', alt: image.alt | default: product.title }}{%- endfor -%}
+</div>
+{%- endif -%}
+</div>
+<div class="product-info">
+{%- if product.type != blank %}<div class="eyebrow" style="color:#7E6AA8">{{ product.type }}</div>{% endif %}
+<h1 class="product-title">{{ product.title }}</h1>
+<div class="product-price">{{ current.price | money }}{% if current.compare_at_price > current.price %} <s class="muted">{{ current.compare_at_price | money }}</s>{% endif %}</div>
+{%- form 'product', product, class: 'product-form' -%}
+{%- if product.has_only_default_variant -%}
+<input type="hidden" name="id" value="{{ current.id }}">
+{%- else -%}
+<label class="field-label" for="variant">{{ product.options | join: ' / ' }}</label>
+<select id="variant" class="field" name="id">
+{%- for variant in product.variants -%}<option value="{{ variant.id }}"{% if variant == current %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }} · {{ variant.price | money }}{% unless variant.available %} (sold out){% endunless %}</option>{%- endfor -%}
+</select>
+{%- endif -%}
+{%- if section.settings.personalize -%}
+<label class="field-label" for="personal">{{ section.settings.personalize_label }}</label>
+<textarea id="personal" class="field" name="properties[{{ section.settings.personalize_label | escape }}]" rows="3" placeholder="{{ section.settings.personalize_hint | escape }}"></textarea>
+{%- endif -%}
+<div class="buy-row">
+<label class="sr-only" for="qty">Quantity</label>
+<input id="qty" class="field qty" type="number" name="quantity" value="1" min="1">
+<button class="btn btn-d" type="submit" name="add"{% unless current.available %} disabled{% endunless %}>{% if current.available %}Add to cart{% else %}Sold out{% endif %}</button>
+</div>
+{%- endform -%}
+{%- if product.description != blank %}<div class="rte">{{ product.description }}</div>{% endif %}
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "checkbox", "id": "personalize", "label": "Show personalization field", "default": true, "info": "Saved on the order as a line item property" },
+    { "type": "text", "id": "personalize_label", "label": "Personalization label", "default": "Personalization" },
+    { "type": "text", "id": "personalize_hint", "label": "Personalization hint", "default": "Names, dates, colors… (optional)" }
+  ]
+}
+{% endschema %}

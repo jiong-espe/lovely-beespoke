@@ -1,0 +1,32 @@
+{%- assign coll = section.settings.collection -%}
+<section class="featured">
+<div class="wrap">
+<div class="featured-head">
+{%- if section.settings.eyebrow != blank %}<div class="eyebrow" style="color:#7E6AA8">{{ section.settings.eyebrow }}</div>{% endif %}
+<h2>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+</div>
+<div class="product-grid">
+{%- if coll != blank and coll.products_count > 0 -%}
+{%- for product in coll.products limit: section.settings.limit -%}{% render 'product-card', product: product %}{%- endfor -%}
+{%- else -%}
+{%- for i in (1..4) -%}<div class="card-p"><div class="card-img">{{ 'product-' | append: i | placeholder_svg_tag: 'placeholder' }}</div><div class="card-t">[PRODUCT NAME]</div><div class="card-price muted">Pick a collection in the theme editor</div></div>{%- endfor -%}
+{%- endif -%}
+</div>
+<a class="slink" href="{{ coll.url | default: routes.all_products_collection_url }}">{{ section.settings.link_label }} →</a>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Fresh from the hive" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Little things," },
+    { "type": "text", "id": "heading_em", "label": "Heading accent", "default": "made to be given." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products", "min": 2, "max": 8, "step": 1, "default": 4 },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "View all" }
+  ],
+  "presets": [{ "name": "Featured products" }]
+}
+{% endschema %}

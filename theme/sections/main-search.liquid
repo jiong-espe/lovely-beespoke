@@ -1,0 +1,24 @@
+<section class="wrap shop-page">
+<h1 class="page-title">Search</h1>
+<form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+<label class="sr-only" for="q">Search</label>
+<input id="q" class="field" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search favors, gifts, crafts…">
+<input type="hidden" name="type" value="product">
+<button class="btn btn-d" type="submit">Search</button>
+</form>
+{%- if search.performed -%}
+{%- paginate search.results by 12 -%}
+<p class="muted">{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for “{{ search.terms | escape }}”</p>
+<div class="product-grid">
+{%- for item in search.results -%}
+{%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}{%- else -%}<a class="card-p" href="{{ item.url }}"><div class="card-t">{{ item.title }}</div></a>{%- endif -%}
+{%- endfor -%}
+</div>
+{%- if paginate.pages > 1 %}<nav class="pagination" aria-label="Pages">{{ paginate | default_pagination }}</nav>{% endif %}
+{%- endpaginate -%}
+{%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

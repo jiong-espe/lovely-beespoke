@@ -1,0 +1,33 @@
+<!-- CTA: newsletter signup (Shopify customer form, tagged "newsletter") over parting mist -->
+<div id="join" class="join" data-join>
+<canvas class="join-mist" data-mist aria-hidden="true"></canvas>
+<div class="wrap join-in">
+<h2 class="join-h"><span class="sr-only">{{ section.settings.heading }} {{ section.settings.heading_em }}</span><span aria-hidden="true" data-wave>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></span></h2>
+<p class="join-p" data-type>{{ section.settings.text }}</p>
+{%- form 'customer', class: 'join-form', id: 'join-form' -%}
+<input type="hidden" name="contact[tags]" value="newsletter">
+{%- if form.posted_successfully? -%}
+<p class="form-note" role="status">{{ section.settings.thanks }}</p>
+{%- else -%}
+{%- if form.errors %}<p class="form-note" role="alert">{{ form.errors | default_errors }}</p>{% endif -%}
+<label for="em" class="sr-only">Email address</label>
+<input id="em" class="field" type="email" name="contact[email]" placeholder="Your email" autocomplete="email" required style="flex:1;min-width:200px;border-color:#2B2629">
+<button class="btn btn-d" type="submit">{{ section.settings.button }}</button>
+{%- endif -%}
+{%- endform -%}
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Join the hive",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Where creativity meets" },
+    { "type": "text", "id": "heading_em", "label": "Heading accent", "default": "celebrations." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Join the hive for a first look at new pieces, seasonal favors and the occasional bit of honey." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Join the hive" },
+    { "type": "text", "id": "thanks", "label": "Signed-up message", "default": "Welcome to the hive! Watch your inbox." }
+  ],
+  "presets": [{ "name": "Join the hive" }]
+}
+{% endschema %}

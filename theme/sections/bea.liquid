@@ -1,0 +1,45 @@
+<!-- BEA: line-art portrait plus a chat-style card that sends the question through the store contact form -->
+<div id="bea" class="wrap hero" style="padding-top:112px;padding-bottom:112px">
+<div style="display:flex;flex-direction:column;gap:24px">
+<h2 style="margin:0;font-size:clamp(42px,5.4vw,70px);font-weight:300;line-height:1.08;letter-spacing:-0.015em">{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+{%- if section.settings.text != blank %}<p class="muted" style="margin:0;font-size:20px;font-weight:300;max-width:460px">{{ section.settings.text }}</p>{% endif %}
+</div>
+<div class="bea-art" aria-hidden="true">
+{% render 'art-bea' %}
+</div>
+<div class="bea-chat">
+{%- form 'contact', id: 'bea-form' -%}
+{%- if section.settings.sample_q != blank %}<div class="bubble bubble-q">{{ section.settings.sample_q }}</div>{% endif %}
+{%- if form.posted_successfully? -%}
+<div class="bubble bubble-a" role="status">{{ section.settings.thanks }}</div>
+{%- elsif form.errors -%}
+<div class="bubble bubble-a" role="alert">{{ form.errors | default_errors }}</div>
+{%- elsif section.settings.sample_a != blank -%}
+<div class="bubble bubble-a">{{ section.settings.sample_a }}</div>
+{%- endif -%}
+<input type="hidden" name="contact[subject]" value="Ask Bea">
+<label for="bea-email" class="sr-only">Your email</label>
+<input id="bea-email" class="field" type="email" name="contact[email]" placeholder="Your email" autocomplete="email" required>
+<div class="bea-row">
+<label for="bea-ask" class="sr-only">Ask Bea</label>
+<input id="bea-ask" class="field" type="text" name="contact[body]" placeholder="Ask Bea about a gift…" required>
+<button class="btn btn-d" type="submit">Ask</button>
+</div>
+{%- endform -%}
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Ask Bea",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Hi, I’m Bea. Tell me what you’re" },
+    { "type": "text", "id": "heading_em", "label": "Heading accent", "default": "celebrating." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Your gift and party helper: share the occasion, the guest count and your colors, and Bea suggests favors and gifts to match." },
+    { "type": "text", "id": "sample_q", "label": "Sample question bubble", "default": "Favors for a baby shower, 30 guests, lilac theme?" },
+    { "type": "textarea", "id": "sample_a", "label": "Sample answer bubble", "default": "Mini honey jars with lilac ribbon, a name tag on each, and matching thank-you cards. One theme, three little pieces." },
+    { "type": "text", "id": "thanks", "label": "Sent message", "default": "Got it! Bea will reply to your email soon." }
+  ],
+  "presets": [{ "name": "Ask Bea" }]
+}
+{% endschema %}

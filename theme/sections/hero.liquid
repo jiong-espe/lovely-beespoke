@@ -1,0 +1,43 @@
+<!-- HERO SCENE: pins, then blurs and fades behind a blush and lilac puff as you scroll -->
+<section class="hero-scene" data-hero>
+<div class="hero-stage" data-hero-stage>
+<div class="hero-fx" data-hero-fx>
+{% render 'site-nav' %}
+<div id="top" class="wrap hero">
+<div class="hero-copy">
+{%- if section.settings.eyebrow != blank %}<div class="muted eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+<h1 class="hero-h1" data-hero-h1>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h1>
+{%- if section.settings.text != blank %}<p class="muted hero-lede">{{ section.settings.text }}</p>{% endif %}
+<div class="hero-ctas">
+{%- if section.settings.button_1 != blank %}<a class="btn btn-d" href="{{ section.settings.link_1 | default: routes.all_products_collection_url }}">{{ section.settings.button_1 }}</a>{% endif %}
+{%- if section.settings.button_2 != blank %}<a class="btn btn-l" href="{{ section.settings.link_2 | default: '#bea' }}">{{ section.settings.button_2 }}</a>{% endif %}
+</div>
+</div>
+<div class="hero-art" aria-hidden="true">
+{% render 'art-bee' %}
+</div>
+</div>
+</div>
+<div class="scroll-cue" data-cue aria-hidden="true"><span>{{ section.settings.cue }}</span><i></i></div>
+</div>
+<div class="hero-runway" aria-hidden="true"></div>
+</section>
+<canvas class="smoke" data-smoke aria-hidden="true"></canvas>
+
+{% schema %}
+{
+  "name": "Hero (folk bee)",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Crafts · Favors · Personalized gifts" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Crafted with" },
+    { "type": "text", "id": "heading_em", "label": "Heading accent (script, rose)", "default": "heart." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Where creativity meets celebrations. Handmade favors, giveaways and personalized gifts, made one at a time for the people and moments you love." },
+    { "type": "text", "id": "button_1", "label": "Primary button", "default": "Shop the collection" },
+    { "type": "url", "id": "link_1", "label": "Primary button link", "info": "Defaults to all products" },
+    { "type": "text", "id": "button_2", "label": "Secondary button", "default": "Start a custom order" },
+    { "type": "url", "id": "link_2", "label": "Secondary button link", "info": "Defaults to the Ask Bea section" },
+    { "type": "text", "id": "cue", "label": "Scroll cue", "default": "Scroll to celebrate" }
+  ],
+  "presets": [{ "name": "Hero (folk bee)" }]
+}
+{% endschema %}

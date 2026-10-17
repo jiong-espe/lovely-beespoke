@@ -1,0 +1,33 @@
+{%- comment -%} Pillars landscape; the sun shows each slide's image (block image, else the collection's featured image). Expects `section`. {%- endcomment -%}
+<svg viewBox="0 0 800 500" preserveAspectRatio="xMaxYMax slice" fill="none" stroke="#2B2629" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="-400" width="1200" height="500" fill="#DCCFE3" stroke="none"/>
+<circle class="sun" cx="620" cy="150" r="72" stroke="none"/>
+<circle class="ring" cx="620" cy="150" r="86" stroke-dasharray="2 7"/>
+<text class="art-label" data-label x="620" y="146" text-anchor="middle" stroke="none">[PRODUCT<tspan x="620" dy="18">PHOTO]</tspan></text>
+<defs><clipPath id="sun-clip"><circle cx="620" cy="150" r="72"/></clipPath></defs>
+{%- for block in section.blocks -%}
+{%- assign img = block.settings.image | default: block.settings.collection.featured_image -%}
+{%- if img != blank -%}<image class="sun-img{% if forloop.first %} on{% endif %}" data-sun-img data-i="{{ forloop.index0 }}" href="{{ img | image_url: width: 400 }}" x="548" y="78" width="144" height="144" preserveAspectRatio="xMidYMid slice" clip-path="url(#sun-clip)"/>{%- endif -%}
+{%- endfor %}
+<g class="gusts" stroke="#FCF9F8" stroke-width="8">
+<path data-gust="1" pathLength="1" stroke-dasharray=".5 .5" d="M-20 90C80 60 180 120 280 96C340 80 356 44 324 36C300 30 290 58 310 64"/>
+<path data-gust="1.4" pathLength="1" stroke-dasharray=".5 .5" d="M120 230C240 200 340 250 450 214C510 194 512 152 482 148C458 146 456 172 474 178"/>
+<path data-gust=".8" pathLength="1" stroke-dasharray=".5 .5" d="M420 300C520 280 640 310 820 270"/>
+<path data-gust="1.2" pathLength="1" stroke-dasharray=".5 .5" d="M-20 180C60 168 120 190 200 176"/>
+</g>
+<path d="M-410 330C-200 280 -60 240 110 270C210 230 280 240 380 290C470 340 620 250 810 290V510H-410Z" fill="#F2C4CE" stroke="none"/>
+<path d="M60 300C150 250 250 246 360 300M90 324C180 284 270 284 380 326M600 290C680 270 740 268 800 280" stroke="#FCF9F8"/>
+<path d="M-410 400C-200 360 0 330 170 340C300 330 380 350 470 370C600 400 700 340 810 350V510H-410Z" fill="#9DB5A0" stroke="none"/>
+<path d="M40 380C200 330 340 344 460 378M80 404C220 370 340 376 470 398" stroke="#FCF9F8"/>
+<path d="M538 348H586V382H538Z" fill="#FCF9F8"/>
+<path d="M532 350L562 322L592 350Z" fill="#9E5C79"/>
+<rect x="546" y="358" width="10" height="10" fill="#F2C14E"/>
+<rect x="566" y="362" width="10" height="20" fill="#7E6AA8"/>
+<g class="tree"><path d="M470 376V344"/><path d="M470 350C454 338 454 306 470 288C486 306 486 338 470 350Z" fill="#7E6AA8"/><path d="M470 344V300M470 318l-7-7M470 318l7-7M470 332l-8-7M470 332l8-7" stroke="#FCF9F8"/></g>
+<g class="tree"><path d="M690 366V334"/><path d="M690 340C676 330 676 302 690 286C704 302 704 330 690 340Z" fill="#7E6AA8"/><path d="M690 334V298M690 314l-6-6M690 314l6-6" stroke="#FCF9F8"/></g>
+<g class="tree"><path d="M744 360V338"/><path d="M744 342C734 334 734 314 744 302C754 314 754 334 744 342Z" fill="#7E6AA8"/><path d="M744 336V310" stroke="#FCF9F8"/></g>
+<path d="M-410 450C-100 420 200 410 400 424C560 420 680 414 810 410V510H-410Z" fill="#F8E1E6" stroke="none"/>
+<path d="M20 470C220 440 480 460 780 448" stroke="#D38FA5" stroke-dasharray="4 6"/>
+<g class="drift" fill="#FCF9F8" stroke="none"><circle cx="-300" cy="60" r="3.5"/><circle cx="-240" cy="140" r="3"/><circle cx="-180" cy="40" r="3"/><circle cx="-120" cy="220" r="3.5"/><circle cx="-60" cy="110" r="3"/><circle cx="0" cy="170" r="3.5"/><circle cx="60" cy="70" r="3"/><circle cx="120" cy="260" r="3.5"/><circle cx="-200" cy="300" r="3"/><circle cx="-80" cy="320" r="3"/><circle cx="200" cy="120" r="3.5"/><circle cx="300" cy="280" r="3"/><circle cx="380" cy="60" r="3.5"/><circle cx="460" cy="200" r="3"/></g>
+<g class="drift drift-2" fill="#D38FA5" stroke="none"><circle cx="-340" cy="180" r="2.5"/><circle cx="-260" cy="90" r="2.5"/><circle cx="-150" cy="250" r="2.5"/><circle cx="-50" cy="40" r="2.5"/><circle cx="40" cy="130" r="2.5"/><circle cx="140" cy="50" r="2.5"/><circle cx="240" cy="180" r="2.5"/><circle cx="340" cy="240" r="2.5"/></g>
+</svg>

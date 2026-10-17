@@ -1,0 +1,13 @@
+{%- comment -%} Folk-arch product card. Expects `product`. {%- endcomment -%}
+<a class="card-p" href="{{ product.url }}">
+<div class="card-img">
+{%- if product.featured_image -%}
+{{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 900px) 25vw, 50vw', alt: product.featured_image.alt | default: product.title }}
+{%- else -%}
+{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+{%- endif -%}
+{%- if product.available == false -%}<span class="card-tag">Sold out</span>{%- elsif product.compare_at_price > product.price -%}<span class="card-tag">Sale</span>{%- endif -%}
+</div>
+<div class="card-t">{{ product.title }}</div>
+<div class="card-price">{% if product.price_varies %}From {% endif %}{{ product.price | money }}{% if product.compare_at_price > product.price %} <s class="muted">{{ product.compare_at_price | money }}</s>{% endif %}</div>
+</a>

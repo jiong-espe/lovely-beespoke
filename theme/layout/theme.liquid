@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page_title }}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}</title>
+{%- if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+<link rel="canonical" href="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | escape }}">
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta name="theme-color" content="#2B2629">
+{%- if settings.favicon %}<link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}">{% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+{{ 'styles.css' | asset_url | stylesheet_tag }}
+{{ 'store.css' | asset_url | stylesheet_tag }}
+<script>document.documentElement.classList.add('js')</script>
+<script src="{{ 'script.js' | asset_url }}" defer></script>
+{{ content_for_header }}
+</head>
+<body>
+<a class="skip-link" href="#main">{{ 'general.skip_to_content' | t }}</a>
+<div class="pg" style="min-height:100vh">
+{%- comment -%} On the home page the nav lives inside the hero so it blurs away with the puff {%- endcomment -%}
+{%- unless template.name == 'index' %}{% section 'header' %}{% endunless %}
+<main id="main">
+{{ content_for_layout }}
+</main>
+{% section 'footer' %}
+</div>
+</body>
+</html>

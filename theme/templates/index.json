@@ -1,0 +1,197 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "services": {
+      "type": "services",
+      "blocks": {
+        "svc1": {
+          "type": "service",
+          "settings": {
+            "title": "[SERVICE NAME]",
+            "text": "e.g. Custom orders. A line on what’s included and lead time."
+          }
+        },
+        "svc2": {
+          "type": "service",
+          "settings": {
+            "title": "[SERVICE NAME]",
+            "text": "e.g. Party favor bundles. A line on themes and guest counts."
+          }
+        },
+        "svc3": {
+          "type": "service",
+          "settings": {
+            "title": "[SERVICE NAME]",
+            "text": "e.g. Event and brand giveaways. A line on minimums and packing."
+          }
+        },
+        "svc4": {
+          "type": "service",
+          "settings": {
+            "title": "[SERVICE NAME]",
+            "text": "e.g. Gift wrapping and notes. A line on what’s included."
+          }
+        }
+      },
+      "block_order": [
+        "svc1",
+        "svc2",
+        "svc3",
+        "svc4"
+      ],
+      "settings": {}
+    },
+    "made_for": {
+      "type": "made-for",
+      "blocks": {
+        "occ1": {
+          "type": "occasion",
+          "settings": {
+            "text": "a birthday"
+          }
+        },
+        "occ2": {
+          "type": "occasion",
+          "settings": {
+            "text": "a wedding"
+          }
+        },
+        "occ3": {
+          "type": "occasion",
+          "settings": {
+            "text": "a baby shower"
+          }
+        },
+        "occ4": {
+          "type": "occasion",
+          "settings": {
+            "text": "a giveaway"
+          }
+        },
+        "occ5": {
+          "type": "occasion",
+          "settings": {
+            "text": "a thank-you"
+          }
+        },
+        "occ6": {
+          "type": "occasion",
+          "settings": {
+            "text": "just because"
+          }
+        }
+      },
+      "block_order": [
+        "occ1",
+        "occ2",
+        "occ3",
+        "occ4",
+        "occ5",
+        "occ6"
+      ],
+      "settings": {}
+    },
+    "pillars": {
+      "type": "pillars",
+      "blocks": {
+        "col1": {
+          "type": "collection",
+          "settings": {
+            "title": "Crafts",
+            "text": "Handmade pieces for your home and your people, plus a few random things we couldn’t resist making. [PRODUCT NAME]",
+            "color": "#F2C4CE",
+            "link_label": "Shop"
+          }
+        },
+        "col2": {
+          "type": "collection",
+          "settings": {
+            "title": "Favors",
+            "text": "Party favors and keepsakes, matched to your theme, your colors and your guest list. [PRODUCT NAME]",
+            "color": "#C8B8E0",
+            "link_label": "Shop"
+          }
+        },
+        "col3": {
+          "type": "collection",
+          "settings": {
+            "title": "Giveaways",
+            "text": "Event and brand giveaways, made in small batches and packed with care. [PRODUCT NAME]",
+            "color": "#F2C14E",
+            "link_label": "Shop"
+          }
+        },
+        "col4": {
+          "type": "collection",
+          "settings": {
+            "title": "Personalized",
+            "text": "Names, dates and little details that make a gift unmistakably theirs. [PRODUCT NAME]",
+            "color": "#F8E1E6",
+            "link_label": "Shop"
+          }
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3",
+        "col4"
+      ],
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {}
+    },
+    "how_made": {
+      "type": "how-made",
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "text": "Tell us what you’re celebrating."
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "text": "We sketch, craft and personalize it."
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "text": "Wrapped with care, ready to give."
+          }
+        }
+      },
+      "block_order": [
+        "step1",
+        "step2",
+        "step3"
+      ],
+      "settings": {}
+    },
+    "bea": {
+      "type": "bea",
+      "settings": {}
+    },
+    "join": {
+      "type": "join",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "services",
+    "made_for",
+    "pillars",
+    "featured",
+    "how_made",
+    "bea",
+    "join"
+  ]
+}

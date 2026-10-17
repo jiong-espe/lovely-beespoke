@@ -243,30 +243,63 @@
 </div>
 </section>
 
-<!-- HOW IT'S MADE -->
-<div id="ritual" style="background:#F3EEF8;padding:112px 0">
+<!-- HOW IT'S MADE: pins while each step comes to life in order; a stitched thread runs down the hierarchy (script.js scrubs [data-step]) -->
+<section id="ritual" class="steps-scene" data-steps>
+<div class="steps-stage">
 <div class="wrap hero">
-<div style="display:flex;flex-direction:column;gap:24px">
-<div style="font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:#7E6AA8">How it’s made</div>
-<h2 style="margin:0;font-size:clamp(42px,5.4vw,70px);font-weight:300;line-height:1.08;letter-spacing:-0.015em">Made the way a <em>hive</em> works.</h2>
-<p class="muted" style="margin:0;font-size:20px;font-weight:300;max-width:480px">Small batches, careful hands, and every piece checked before it leaves the hive. Nothing mass-produced, nothing rushed.</p>
+<div class="steps-copy">
+<div class="eyebrow" style="color:#7E6AA8">How it’s made</div>
+<h2>Made the way a <em>hive</em> works.</h2>
+<p class="muted">Small batches, careful hands, and every piece checked before it leaves the hive. Nothing mass-produced, nothing rushed.</p>
 </div>
-<div class="hive-stack">
-<!-- Stacked-leaf hierarchy: each leaf lines up with its step in the grid row beside it -->
-<svg class="stack-art" viewBox="0 0 300 480" aria-hidden="true">
-<path d="M150 0L262 480H38Z" fill="#7E6AA8"/>
-<g fill="#F3EEF8" opacity=".35"><circle cx="140" cy="160" r="1.5"/><circle cx="170" cy="200" r="1"/><circle cx="120" cy="330" r="1.5"/><circle cx="190" cy="360" r="1"/><circle cx="150" cy="440" r="1.5"/><circle cx="110" cy="450" r="1"/></g>
-<path class="leaf" style="--x:-40px" d="M10 80Q130 22 250 80Q130 138 10 80Z" fill="#F2C4CE"/>
-<g fill="#2B2629"><circle cx="176" cy="70" r="3"/><circle cx="190" cy="66" r="3"/><circle cx="204" cy="70" r="3"/><circle cx="218" cy="76" r="3"/><circle cx="184" cy="80" r="3"/><circle cx="198" cy="82" r="3"/><circle cx="212" cy="88" r="3"/><circle cx="196" cy="94" r="2.5"/></g>
-<path class="leaf" style="--x:40px" d="M60 240Q170 182 290 240Q170 298 60 240Z" fill="#F2C14E"/>
-<path class="leaf" style="--x:-40px" d="M24 400Q148 342 272 400Q148 458 24 400Z" fill="#9E5C79"/>
+<div class="steps-list">
+<div class="steps-thread" aria-hidden="true"><i data-thread></i></div>
+<div class="step-row" data-step>
+<div class="step-art" aria-hidden="true">
+<svg viewBox="0 0 120 120" fill="none" stroke="#2B2629" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path class="f" d="M22 24h76a10 10 0 0 1 10 10v38a10 10 0 0 1-10 10H54L36 98V82H22a10 10 0 0 1-10-10V34a10 10 0 0 1 10-10Z" fill="#F8E1E6" stroke="none"/>
+<path class="d" pathLength="1" d="M22 24h76a10 10 0 0 1 10 10v38a10 10 0 0 1-10 10H54L36 98V82H22a10 10 0 0 1-10-10V34a10 10 0 0 1 10-10Z"/>
+<path class="f" d="M60 70c-9-7-17-11-17-18c0-6 7-9 17-1c10-8 17-5 17 1c0 7-8 11-17 18Z" fill="#D38FA5"/>
+<circle class="f" cx="104" cy="14" r="4" fill="#F2C14E" stroke="none"/>
+<circle class="f" cx="114" cy="26" r="3" fill="#C8B8E0" stroke="none"/>
+<path class="f" d="M6 14l5 5M11 14l-5 5" stroke="#7E6AA8"/>
 </svg>
-<div class="step"><span>01</span><span>Tell us what you’re celebrating.</span></div>
-<div class="step"><span>02</span><span>We sketch, craft and personalize it.</span></div>
-<div class="step"><span>03</span><span>Wrapped with care, ready to give.</span></div>
+</div>
+<div class="step-text"><span>01</span><p>Tell us what you’re celebrating.</p></div>
+</div>
+<div class="step-row" data-step>
+<div class="step-art" aria-hidden="true">
+<svg viewBox="0 0 120 120" fill="none" stroke="#2B2629" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path class="f" d="M30 46h60l-7 58H37Z" fill="#C8B8E0" stroke="none"/>
+<path class="d" pathLength="1" d="M30 46h60l-7 58H37Z"/>
+<path class="d" pathLength="1" d="M46 46c0-18 28-18 28 0"/>
+<path class="d" pathLength="1" d="M60 94V70"/>
+<path class="f" d="M60 86c-8 0-12-5-12-10c7 0 12 4 12 10ZM60 82c8 0 12-5 12-10c-7 0-12 4-12 10Z" fill="#9DB5A0"/>
+<path class="f" d="M50 68c-1-8 3-12 4-13l3 5l3-7l3 7l3-5c1 1 5 5 4 13c-4 3-16 3-20 0Z" fill="#D38FA5"/>
+<path class="f" d="M90 56l16 3v12l-16 3Z" fill="#F2C14E"/>
+<path class="f" d="M100 8l8 8l-22 22l-10 2l2-10Z" fill="#F7E4A6"/>
+</svg>
+</div>
+<div class="step-text"><span>02</span><p>We sketch, craft and personalize it.</p></div>
+</div>
+<div class="step-row" data-step>
+<div class="step-art" aria-hidden="true">
+<svg viewBox="0 0 120 120" fill="none" stroke="#2B2629" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path class="f" d="M24 60h72v44H24Z" fill="#F2C4CE" stroke="none"/>
+<path class="d" pathLength="1" d="M24 60h72v44H24Z"/>
+<path class="f" d="M18 46h84v16H18Z" fill="#D38FA5"/>
+<path class="d" pathLength="1" d="M60 46v58" stroke="#9E5C79" stroke-width="5"/>
+<path class="f" d="M60 46c-6-14-24-18-24-6c0 8 14 8 24 6ZM60 46c6-14 24-18 24-6c0 8-14 8-24 6Z" fill="#F2C14E"/>
+<path class="f" d="M104 16v10M99 21h10" stroke="#F2C14E"/>
+<path class="f" d="M14 22v8M10 26h8" stroke="#C8B8E0"/>
+</svg>
+</div>
+<div class="step-text"><span>03</span><p>Wrapped with care, ready to give.</p></div>
 </div>
 </div>
 </div>
+</div>
+</section>
 
 <!-- BEA -->
 <div id="bea" class="wrap hero" style="padding-top:112px;padding-bottom:112px">

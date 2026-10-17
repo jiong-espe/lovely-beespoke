@@ -1,0 +1,54 @@
+<!-- HOW IT'S MADE: pins while each step comes to life in order; a stitched thread runs down the hierarchy (script.js scrubs [data-step]) -->
+<section id="ritual" class="steps-scene" data-steps>
+<div class="steps-stage">
+<div class="wrap hero">
+<div class="steps-copy">
+{%- if section.settings.eyebrow != blank %}<div class="eyebrow" style="color:#7E6AA8">{{ section.settings.eyebrow }}</div>{% endif %}
+<h2>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em> {{ section.settings.heading_end }}</h2>
+{%- if section.settings.text != blank %}<p class="muted">{{ section.settings.text }}</p>{% endif %}
+</div>
+<div class="steps-list">
+<div class="steps-thread" aria-hidden="true"><i data-thread></i></div>
+{%- for block in section.blocks %}
+<div class="step-row" data-step {{ block.shopify_attributes }}>
+<div class="step-art" aria-hidden="true">
+{% render 'art-step', i: forloop.index %}
+</div>
+<div class="step-text"><span>{{ forloop.index | prepend: '0' }}</span><p>{{ block.settings.text }}</p></div>
+</div>
+{%- endfor %}
+</div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "How it's made (steps)",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it’s made" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made the way a" },
+    { "type": "text", "id": "heading_em", "label": "Heading accent (lilac)", "default": "hive" },
+    { "type": "text", "id": "heading_end", "label": "Heading end", "default": "works." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Small batches, careful hands, and every piece checked before it leaves the hive. Nothing mass-produced, nothing rushed." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [{ "type": "text", "id": "text", "label": "Step", "default": "Tell us what you’re celebrating.", "info": "Art follows the step's position: message, crafting, wrapped gift" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How it's made (steps)",
+      "blocks": [
+        { "type": "step", "settings": { "text": "Tell us what you’re celebrating." } },
+        { "type": "step", "settings": { "text": "We sketch, craft and personalize it." } },
+        { "type": "step", "settings": { "text": "Wrapped with care, ready to give." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

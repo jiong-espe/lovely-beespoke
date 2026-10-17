@@ -1,6 +1,6 @@
 // Scroll-reveal: elements fade and rise as they enter the viewport.
 (function () {
-  var sel = '.pill, #ritual .hero > div:first-child, #ritual .hive-stack > *, #bea > div, #join .join-h, #join .join-form, #foot';
+  var sel = '.pill, #bea > div, #join .join-h, #join .join-form, #foot';
   var els = document.querySelectorAll(sel);
   if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
   var io = new IntersectionObserver(function (entries) {
@@ -23,7 +23,7 @@
   var slides = pin.querySelectorAll('.slide'), btns = pin.querySelectorAll('.pin-btn');
   var hex = pin.querySelector('[data-hex]'), label = pin.querySelector('[data-label]');
   var count = pin.querySelector('[data-count]'), bar = pin.querySelector('[data-bar]');
-  var gusts = pin.querySelectorAll('[data-gust]');
+  var gusts = pin.querySelectorAll('[data-gust]'), suns = pin.querySelectorAll('[data-sun-img]'); // sun images exist only in the Shopify theme
   var n = slides.length, cur = -1, ticking = false;
   function range() { return Math.max(1, pin.offsetHeight - window.innerHeight); }
   function update() {
@@ -40,6 +40,7 @@
     cur = i;
     slides.forEach(function (s, k) { s.classList.toggle('active', k === i); });
     btns.forEach(function (b, k) { b.classList.toggle('active', k === i); });
+    suns.forEach(function (m) { m.classList.toggle('on', +m.getAttribute('data-i') === i); });
     hex.style.setProperty('--c', slides[i].dataset.c);
     label.style.setProperty('--fg', slides[i].dataset.fg);
     count.textContent = '0' + (i + 1);
@@ -237,6 +238,37 @@
         else el.style.transform = 'scale(' + k.toFixed(3) + ')';
       }
       items.forEach(function (it) { it.classList.toggle('on', g >= +it.dataset.at); });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+
+  // ---------- How it's made: pins while each step comes to life in turn ----------
+  (function () {
+    var sec = document.querySelector('[data-steps]');
+    if (!sec || reduce) return;
+    var thread = sec.querySelector('[data-thread]'), ticking = false;
+    var rows = Array.prototype.map.call(sec.querySelectorAll('[data-step]'), function (r) {
+      return { el: r, d: r.querySelectorAll('.d'), f: r.querySelectorAll('.f') };
+    });
+    function update() {
+      ticking = false;
+      var n = rows.length, p = clamp(-sec.getBoundingClientRect().top / Math.max(1, sec.offsetHeight - window.innerHeight), 0, 1);
+      var cur = Math.min(n - 1, Math.floor(p * n));
+      thread.style.transform = 'scaleY(' + p.toFixed(3) + ')';
+      rows.forEach(function (r, i) {
+        // each step draws its outline, then its fills pop in, over the first 70% of its share of the scroll
+        var k = smooth(0, 0.7, p * n - i), draw = smooth(0, 0.6, k), pop = smooth(0.45, 1, k);
+        r.el.classList.toggle('on', i === cur);
+        r.el.classList.toggle('done', i < cur);
+        for (var j = 0; j < r.d.length; j++) r.d[j].setAttribute('stroke-dashoffset', (1 - draw).toFixed(3));
+        for (j = 0; j < r.f.length; j++) {
+          r.f[j].style.opacity = pop.toFixed(3);
+          r.f[j].style.transform = 'scale(' + (0.5 + 0.5 * pop).toFixed(3) + ')';
+        }
+      });
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener('scroll', onScroll, { passive: true });

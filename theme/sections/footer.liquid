@@ -1,0 +1,32 @@
+<footer id="foot" class="wrap" style="padding-top:72px;padding-bottom:48px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:320px">
+<div style="font-size:22px;font-weight:500">{{ shop.name }}</div>
+{%- if section.settings.tagline != blank %}<p class="muted" style="margin:0;font-size:16px">{{ section.settings.tagline }}</p>{% endif %}
+{%- if section.settings.email != blank %}<a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>{% endif %}
+</div>
+{%- for i in (1..3) -%}
+{%- assign menu_key = 'menu_' | append: i -%}
+{%- assign menu = section.settings[menu_key] -%}
+{%- if menu.links.size > 0 -%}
+<div style="display:flex;flex-direction:column;gap:10px"><div class="muted" style="font-size:14px;letter-spacing:0.14em;text-transform:uppercase">{{ menu.title }}</div>
+{%- for link in menu.links %}<a href="{{ link.url }}">{{ link.title }}</a>{% endfor -%}
+</div>
+{%- endif -%}
+{%- endfor -%}
+</div>
+<div class="muted" style="margin-top:56px;padding-top:24px;border-top:1px solid #EDE4EA;font-size:15px">© {{ 'now' | date: '%Y' }} {{ shop.name }}</div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Crafted with heart. Where creativity meets celebrations." },
+    { "type": "text", "id": "email", "label": "Contact email" },
+    { "type": "link_list", "id": "menu_1", "label": "Menu 1", "default": "footer" },
+    { "type": "link_list", "id": "menu_2", "label": "Menu 2" },
+    { "type": "link_list", "id": "menu_3", "label": "Menu 3" }
+  ]
+}
+{% endschema %}
